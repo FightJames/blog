@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Font size -->
+    <dimen name="font_large">25sp</dimen>
+    <dimen name="font_normal">20sp</dimen>
+    <dimen name="font_small">15sp</dimen>
+
+    <!-- Icon size -->
+    <dimen name="icon_small">20dp</dimen>
+    <dimen name="icon_normal">50dp</dimen>
+
+    <!-- Spacing between two views -->
+    <dimen name="spacing_huge">100dp</dimen>
+    <dimen name="spacing_large">50dp</dimen>
+    <dimen name="spacing_normal">20dp</dimen>
+    <dimen name="spacing_small">16dp</dimen>
+    <dimen name="spacing_tiny">0dp</dimen>
+    <dimen name="spacing_micro">10dp</dimen>
+    <dimen name="spacing_micro_bottom">0dp</dimen>
+    <dimen name="spacing_line">2dp</dimen>
+    <!-- Layout width -->
+    <dimen name="width_normal">200dp</dimen>
+    <dimen name="width_small">100dp</dimen>
+
+    <!-- Layout height -->
+    <dimen name="line_height">1dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="view_radius_normal">16dp</dimen>
+
+
+
+</resources>

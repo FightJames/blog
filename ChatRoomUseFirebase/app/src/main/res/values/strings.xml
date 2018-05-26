@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ChatRoomDemo</string>
+    <string name="Setting">Setting</string>
+    <string name="UserSetting">User Setting</string>
+    <string name="Change">Change</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="UserName">Name</string>
+    <string name="ChatRoom">Chat Room</string>
+</resources>

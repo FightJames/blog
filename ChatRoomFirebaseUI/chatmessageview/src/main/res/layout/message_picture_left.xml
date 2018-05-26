@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.bassaer.chatmessageview.view.RoundImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/message_picture"
+    android:layout_width="@dimen/width_normal"
+    android:layout_height="@dimen/width_normal"
+    android:src="@drawable/face_1"
+    android:background="@android:color/transparent"
+    android:scaleType="fitCenter"
+    android:contentDescription="@string/error"/>

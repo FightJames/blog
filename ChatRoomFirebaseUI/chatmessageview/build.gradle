@@ -1,0 +1,167 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "de.mannodermaus.android-junit5"
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('version.properties').newDataInputStream())
+
+def libVersion = properties.getProperty('version')
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName libVersion
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = 'com.github.bassaer'
+version = libVersion
+
+def siteUrl = 'https://github.com/bassaer/ChatMessageView'
+def gitUrl = 'https://github.com/bassaer/ChatMessageView.git'
+
+def localProperties = project.rootProject.file('local.properties')
+
+bintray {
+    if (localProperties.exists()) {
+        properties.load(localProperties.newDataInputStream())
+        user = properties.getProperty('bintray_user')
+        key = properties.getProperty('bintray_api_key')
+    } else {
+        //Circle CI ENV
+        user = System.getenv('BINTRAY_USER')
+        key = System.getenv('BINTRAY_API_KEY')
+    }
+
+    configurations = ['archives']
+
+    pkg {
+        repo = 'ChatMessageView'
+        name = project.name
+        userOrg = 'tnakayama'
+        desc = 'Chat UI Library for Android'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/bassaer/ChatMessageView/issues'
+        vcsUrl = gitUrl
+        licenses = ['MIT']
+        labels = ['android']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name = project.name
+                url = siteUrl
+                licenses {
+                    license {
+                        name 'The MIT License (MIT)'
+                        url 'https://opensource.org/licenses/mit-license.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'bassaer'
+                        name 'Tsubasa Nakayama'
+                        email 'app.nakayama@gmail.com'
+                    }
+                }
+                scm {
+                    connection = gitUrl
+                    developerConnection = gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:26.1.0"
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile "com.android.support:support-v4:26.1.0"
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation "org.robolectric:robolectric:3.6.1"
+    testCompile "org.mockito:mockito-core:2.13.0"
+}
+
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs.findAll {
+        //exclude kotlin files
+        !(it.name.contains('kotlin'))
+    }
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
+}
+
+def repo = new File(rootDir, "repository")
+
+apply plugin: "maven"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = libVersion
+            pom.groupId = 'com.github.bassaer'
+            pom.artifactId = 'chatmessageview'
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    google()
+}

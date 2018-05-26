@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">musicApplication</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="SongName">SongName</string>
+    <string name="SongListName">SongListName</string>
+    <string name="AskPlayListName">Give your Playlist a name.</string>
+    <string name="Cancel">CANCEL</string>
+    <string name="Create">CREATE</string>
+    <string name="AddToList">Add to PlayList</string>
+    <string name="AddToListTitle">Add to playList</string>
+    <string name="NewPlaylist">NEW PLAYLIST</string>
+    <string name="Remove">Remove</string>
+    <string name="PlayForm">Play Form</string>
+</resources>

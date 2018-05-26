@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "15769877650",
+    "firebase_url": "https://chatroom-4c7c4.firebaseio.com",
+    "project_id": "chatroom-4c7c4",
+    "storage_bucket": "chatroom-4c7c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15769877650:android:fb3f854e3c099f16",
+        "android_client_info": {
+          "package_name": "com.techapp.james.chatroomdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15769877650-d1njh92h5vu3djfjecjehian0rlon7hh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techapp.james.chatroomdemo",
+            "certificate_hash": "16c6e465f0a8f9309bb9a893968d760e6663d21d"
+          }
+        },
+        {
+          "client_id": "15769877650-2g9luhnl9396fv22v1f1ce4tjhvbjj9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4tHQtmZKG0KrA8wGdjAU7mAzqL1KxSuo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15769877650-2g9luhnl9396fv22v1f1ce4tjhvbjj9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
