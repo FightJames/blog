@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <!--false mean to loop the animation , true mean to preform the animation once -->
+    <item
+        android:drawable="@drawable/f1"
+        android:duration="100">
+        <!--The duration to show this frame, in milliseconds.-->
+    </item>
+    <item
+        android:drawable="@drawable/f2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/f3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/f4"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/f5"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/f6"
+        android:duration="100" />
+
+</animation-list>

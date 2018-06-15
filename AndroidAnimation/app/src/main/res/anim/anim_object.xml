@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <!--透明到不透明 旋轉360度 -->
+
+    <!--duration is millisecond-->
+    <!--1.0 is opaque 0 is transparent-->
     <alpha
         android:duration="2000"
         android:fromAlpha="1.0"
         android:repeatCount="-1"
         android:toAlpha="0.5" />
+    <!--fromDegrees: Float. Starting angular position, in degrees.-->
+    <!--toDegrees:Float. Ending angular position, in degrees.-->
+    <!--pivotX:Float or percentage. The X coordinate of the center of rotation. Expressed either: in pixels relative to the object's left edge (such as "5"), in percentage relative to the object's left edge (such as "5%"), or in percentage relative to the parent container's left edge (such as "5%p").-->
+    <!--pivotY:Float or percentage. The Y coordinate of the center of rotation. Expressed either: in pixels relative to the object's top edge (such as "5"), in percentage relative to the object's top edge (such as "5%"), or in percentage relative to the parent container's top edge (such as "5%p").-->
     <rotate
         android:duration="2000"
+        android:fillAfter="true"
         android:fromDegrees="0"
         android:pivotX="50"
         android:pivotY="50"
-
-        android:fillAfter="true"
+        android:repeatCount="-1"
         android:toDegrees="250" />
+    <!--A resizing animation. You can specify the center point of the image from which it grows outward (or inward) by specifying pivotX and pivotY. For example, if these values are 0, 0 (top-left corner), all growth will be down and to the right. -->
+    <!--fromXScale:Float. Starting X size offset, where 1.0 is no change-->
+    <!--toXScale:Float. Ending X size offset, where 1.0 is no change.-->
+    <!--YScale is same as XScale-->
+    <!--pivotX:Float. The X coordinate to remain fixed when the object is scaled.-->
+    <!--pivotY is same as pivotX-->
+
+    <scale
+        android:duration="2000"
+        android:fromXScale="0.1"
+        android:fromYScale="0.1"
+        android:pivotX="0"
+        android:pivotY="0"
+        android:repeatCount="-1"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />
+    <!--move object form -100% to 100% ,Y is same as x-->
+    <translate
+        android:duration="2000"
+        android:fromXDelta="-100"
+        android:fromYDelta="-1"
+        android:repeatCount="-1"
+        android:toXDelta="100"
+        android:toYDelta="1" />
 </set>

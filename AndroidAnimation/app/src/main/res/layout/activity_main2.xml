@@ -4,17 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.techapp.james.myapplication.Main2Activity">
+    tools:context="com.techapp.james.myapplication.shareElements.ShareTwoActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="109dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="184dp"
-        android:text="Activity2"
-        android:textColor="@android:color/background_dark"
-        android:textSize="25dp"
+        android:id="@+id/textViewHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="101dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="59dp"
+        android:text="Hello world"
+        android:textSize="30sp"
+        android:transitionName="Hello"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="238dp"
+        android:layout_height="287dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:transitionName="Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHello"
+        app:layout_constraintVertical_bias="0.231"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
 </android.support.constraint.ConstraintLayout>
