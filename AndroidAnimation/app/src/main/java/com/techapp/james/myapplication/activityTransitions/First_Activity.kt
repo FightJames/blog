@@ -17,7 +17,7 @@ class First_Activity : AppCompatActivity() {
             var i = Intent(this, SecondActivity::class.java)
 //            this.startActivity(i, activityOption.toBundle())
             this.startActivity(i)
-            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_popup_exit)
+            overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_slide_out_bottom)
         }
     }
 }
