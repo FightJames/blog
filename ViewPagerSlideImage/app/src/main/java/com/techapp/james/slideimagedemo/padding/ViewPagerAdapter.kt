@@ -1,13 +1,12 @@
-package com.techapp.james.slideimagedemo
+package com.techapp.james.slideimagedemo.padding
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.support.v4.view.PagerAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.item_layout.view.*
+import com.techapp.james.slideimagedemo.R
 import java.util.*
 
 /**

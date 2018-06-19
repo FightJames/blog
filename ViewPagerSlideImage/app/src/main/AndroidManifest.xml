@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".padding.ViewPagerActivity" />
+        <activity android:name=".scrollSpeed.ViewPagerScrollActivity"></activity>
     </application>
 
 </manifest>
