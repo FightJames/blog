@@ -3,6 +3,7 @@ package com.techapp.james.slideimagedemo
 import android.content.Context
 import android.graphics.Bitmap
 import android.support.v4.view.PagerAdapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,20 +24,29 @@ class ViewPagerAdapter : PagerAdapter {
 
     override fun instantiateItem(container: ViewGroup?, position: Int): Any {
         var view = LayoutInflater.from(context).inflate(R.layout.item_layout, container, false)
+        if (position % 2 == 0) {
+            view.setBackgroundColor(context.getColor(R.color.colorPrimary));
+        } else {
+            view.setBackgroundColor(context.getColor(R.color.colorAccent));
+        }
+        Log.d("instantiate"," pass")
         //view.imageView.setImageBitmap(data[position])
         container!!.addView(view)
         return view
     }
 
     override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
+        Log.d("isViewFromObject"," pass")
         return view == `object`  // create view is same data object?
     }
 
     override fun getCount(): Int {
+        Log.d("getCount"," pass")
         return data.size
     }
 
     override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
+        Log.d("destroyItem"," pass")
         var view: View = `object` as View
         container!!.removeView(view)
     }

@@ -22,10 +22,12 @@ object FirebaseFacade {
         var filtMsge = FiltMsgHandle()
         getMsgHandle.next = filtMsge
         getChain = getMsgHandle
+
         var getPastMsg = GetPastMsg()
         filtMsge = FiltMsgHandle()
         getPastMsg.next = filtMsge
         getPastChain = getPastMsg
+
         var getLastMsg = GetLastMsg()
         filtMsge = FiltMsgHandle()
         getLastMsg.next = filtMsge

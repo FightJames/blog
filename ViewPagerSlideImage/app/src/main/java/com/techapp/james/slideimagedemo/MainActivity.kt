@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         data!!.add("2")
         addBottomDots(0)
         viewPager.adapter = ViewPagerAdapter(data!!, this)
+        viewPager.clipToPadding = false//if set false mean show next page
+        viewPager.setPadding(100, 0, 100, 0)
+
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -40,6 +43,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+        scrollBtn.setOnClickListener {
+            viewPager.setCurrentItem(5, true)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
