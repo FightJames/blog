@@ -1,4 +1,4 @@
-package com.techapp.james.recycleviewcustomer
+package com.techapp.james.recycleviewcustomer.customRecycler
 
 import android.app.Activity
 
@@ -6,8 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.recylerview_item_image.view.*
-import com.techapp.james.recycleviewcustomer.R.id.textView
+import com.techapp.james.recycleviewcustomer.R
 
 /**
  * Created by James on 2018/3/1.
@@ -45,7 +44,7 @@ class MyAdapter : RecyclerView.Adapter<ViewHolder> {
         }else{
 
             var view = LayoutInflater.from(activity!!.applicationContext).inflate(R.layout.recylerview_item_image, parent, false)
-             holder=MyImageHolder(view)
+             holder= MyImageHolder(view)
         }
         return holder!!
     }

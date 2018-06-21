@@ -1,4 +1,4 @@
-package com.techapp.james.recycleviewcustomer
+package com.techapp.james.recycleviewcustomer.customRecycler
 
 import android.content.Context
 import android.content.res.TypedArray

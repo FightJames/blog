@@ -1,10 +1,9 @@
-package com.techapp.james.recycleviewcustomer
+package com.techapp.james.recycleviewcustomer.customRecycler
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
-import kotlinx.android.synthetic.main.recyclerview_item.view.*
+import com.techapp.james.recycleviewcustomer.R
 import kotlinx.android.synthetic.main.recylerview_item_image.view.*
 
 /**

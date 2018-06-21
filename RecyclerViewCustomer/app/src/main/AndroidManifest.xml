@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".speedRecycler.SpeedRecyclerActivity" />
+        <activity android:name=".customRecycler.RecyclerActivity"></activity>
     </application>
 
 </manifest>
