@@ -33,7 +33,7 @@
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".model.notificationService.MyService"
+            android:name=".model.notificationAndMusicService.MusicService"
             android:enabled="true"
             android:exported="true" />
         <receiver android:name=".model.notificationReceiver.AudioPlayerBrocastReceiver">

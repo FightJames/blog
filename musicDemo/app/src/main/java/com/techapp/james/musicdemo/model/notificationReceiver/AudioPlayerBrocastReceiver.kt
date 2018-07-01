@@ -17,7 +17,6 @@ class AudioPlayerBrocastReceiver : BroadcastReceiver {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         var action = intent!!.action
-        var notificationPresenter = NotificationPresenter.getInstance(null)
         when (action) {
             "com.techapp.james.ACTION_NEXT" -> {
                 Log.d("AudioPlayerBrocast", "Action " + action)
@@ -31,13 +30,9 @@ class AudioPlayerBrocastReceiver : BroadcastReceiver {
                 Log.d("AudioPlayerBrocast", "Action " + action)
                 if (ExoPlayerManager.isPlay()) {
                     ExoPlayerManager.stopPlay()
-                    notificationPresenter!!.onPlayBtnState()
                 } else {
                     ExoPlayerManager.play()
-                    notificationPresenter!!.onStopBtnState()
-
                 }
-
             }
             "com.techapp.james.ACTION_PREVIOUS" -> {
                 Log.d("AudioPlayerBrocast", "Action " + action)

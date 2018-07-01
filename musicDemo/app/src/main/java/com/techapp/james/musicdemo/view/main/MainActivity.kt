@@ -14,10 +14,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.pm.PackageManager
 import android.support.annotation.RequiresApi
 import android.util.Log
-import com.techapp.james.musicdemo.model.notificationService.MyService
+import com.techapp.james.musicdemo.model.notificationAndMusicService.MusicService
 import com.techapp.james.musicdemo.model.playManager.ExoPlayManagerSubject
 import com.techapp.james.musicdemo.model.playManager.ExoPlayerManager
-import com.techapp.james.musicdemo.presenter.NotificationPresenter
 import java.util.ArrayList
 
 
@@ -28,17 +27,12 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
     private val allPermission = ArrayList<Int>()
     private val permission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)  //權限項目在此新增
     private val REQUEST_CODE_ASK_PERMISSIONS = 0
-    var notificationPresenter: NotificationPresenter? = null
+//    var notificationPresenter: NotificationPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ExoPlayerManager.registSubject(this)
-        //test notificationPresenter
-        notificationPresenter = NotificationPresenter.getInstance(this)
-        ExoPlayerManager.registSubject(notificationPresenter!!)
-        notificationPresenter!!.showNotification()
         //--
-        startService(Intent(this, MyService::class.java))
-        ManageCurrentPlaySongList.addRegisterChangeSongName(notificationPresenter as ManageCurrentPlaySongList.ChangeData)
+        startService(Intent(this, MusicService::class.java))
 
         setContentView(R.layout.activity_main)
         mainHandler = Handler(Looper.getMainLooper())
@@ -150,10 +144,8 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
     }
 
     override fun onDestroy() {
-        //  Log.d("MainActivity","OnDestroy")
         mainPresenter!!.storePlayLists()
-        notificationPresenter!!.cancelNotification()
-        stopService(Intent(this, MyService::class.java))
+        stopService(Intent(this, MusicService::class.java))
         super.onDestroy()
     }
 

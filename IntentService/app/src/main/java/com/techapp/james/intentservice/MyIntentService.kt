@@ -35,6 +35,12 @@ class MyIntentService : IntentService("MyIntentService") {
     fun handleDownloadImage(path: String) {
         try {
             Thread.sleep(2000)
+            var ii=0
+            while(true){
+                Log.d("ii ",ii.toString())
+                Thread.sleep(2000)
+                ii++
+            }
             var i = Intent(MainActivity.DOWNLOAD_RESULT)
             i.putExtra(EXTRA_PATH, path)
             sendBroadcast(i)
