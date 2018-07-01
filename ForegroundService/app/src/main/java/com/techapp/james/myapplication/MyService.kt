@@ -1,5 +1,6 @@
 package com.techapp.james.myapplication
 
+import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -14,13 +15,13 @@ class MyService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("Start"," Foreground")
+        Log.d("Start", " Foreground")
         var mBuilder = NotificationCompat.Builder(this, "MyNotifi")
-        .setSmallIcon(R.drawable.notification_icon_background)
-        .setContentTitle("ha")
-        .setContentText("pp")
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        startForeground(1,mBuilder.build())
+                .setSmallIcon(R.drawable.notification_icon_background)
+                .setContentTitle("ha")
+                .setContentText("pp")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        startForeground(1, mBuilder.build())
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -39,5 +40,10 @@ class MyService : Service() {
         })
         thread.start()
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    override fun onDestroy() {
+        var notificationManager = this.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        super.onDestroy()
     }
 }

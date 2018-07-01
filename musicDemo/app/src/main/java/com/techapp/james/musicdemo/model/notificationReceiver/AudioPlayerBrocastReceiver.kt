@@ -6,7 +6,6 @@ import android.content.Intent
 import android.util.Log
 import com.techapp.james.musicdemo.model.musicModel.ManageCurrentPlaySongList
 import com.techapp.james.musicdemo.model.playManager.ExoPlayerManager
-import com.techapp.james.musicdemo.presenter.NotificationPresenter
 
 /**
  * Created by James on 2018/4/9.

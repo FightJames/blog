@@ -16,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         textView.text = "James"
         var i = Intent(this,MyService::class.java)
         startService(i)
+    }
 
+    override fun onDestroy() {
+        var i = Intent(this,MyService::class.java)
+        stopService(i)
+        super.onDestroy()
     }
 }

@@ -68,7 +68,6 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
     }
 
     override fun onDestroy() {
-        notificationManager!!.cancel(notification_id)
         ExoPlayerManager.releasePlay()
         super.onDestroy()
     }
