@@ -24,6 +24,7 @@ class MyService : Service() {
         startForeground(1, mBuilder.build())
     }
 
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         var thread = Thread(object : Runnable {
@@ -39,6 +40,7 @@ class MyService : Service() {
 
         })
         thread.start()
+//        return START_STICKY  START_NOT_STICKY  START_REDELIVER_INTENT
         return super.onStartCommand(intent, flags, startId)
     }
 

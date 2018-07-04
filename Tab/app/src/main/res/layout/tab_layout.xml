@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:tabMode="scrollable">
+    <!--
+   app:tabMode="scrollable" tab可以滾動
+   app:tabMode="fixed" tab不能被滾動
+   指示器高度 :app:tabIndicatorHeight="10dp"
+指示器颜色 :app:tabIndicatorColor="@color/colorPrimary"
+選擇的Tab的文字顏色:app:tabSelectedTextColor="#ffffff"
+未選擇的Tab文字顏色:app:tabTextColor="#000000"
+文字樣式:app:tabTextAppearance="@style/Base.TextAppearance.AppCompat.Large"    -->
+
+</android.support.design.widget.TabLayout>
