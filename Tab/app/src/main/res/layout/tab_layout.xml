@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tabLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:tabMode="scrollable">
+    android:layout_height="match_parent">
     <!--
    app:tabMode="scrollable" tab可以滾動
    app:tabMode="fixed" tab不能被滾動

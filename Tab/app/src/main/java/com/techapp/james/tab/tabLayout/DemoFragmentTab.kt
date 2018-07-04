@@ -1,4 +1,4 @@
-package com.techapp.james.tab
+package com.techapp.james.tab.tabLayout
 
 import android.content.Context
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.techapp.james.tab.R
 import kotlinx.android.synthetic.main.fragment_demo.view.*
 
 
