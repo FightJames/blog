@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.techapp.james.service">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -35,8 +36,12 @@
             android:name=".bindService.MyBindService"
             android:enabled="true"
             android:exported="true" />
+        <service
+            android:name=".jobSheduler.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <activity android:name=".jobSheduler.JobSchedulerActivity"></activity>
+
     </application>
 
 </manifest>
