@@ -3,11 +3,8 @@ package com.techapp.james.service.jobSheduler
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
 import android.content.ComponentName
-import android.content.pm.ComponentInfo
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.techapp.james.service.R
 import kotlinx.android.synthetic.main.activity_job_scheduler.*

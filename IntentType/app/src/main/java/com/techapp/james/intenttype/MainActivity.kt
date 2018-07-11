@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         shareBtn.setOnClickListener {
             var i = Intent(this, Main2Activity::class.java)
-            startActivity(i)
+            startActivity(i)//explict intent
         }
 
     }
