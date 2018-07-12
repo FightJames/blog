@@ -19,32 +19,33 @@ class MyAdapter : RecyclerView.Adapter<ViewHolder> {
         val type = getItemViewType(position)
         when (type) {
             TYPE_TEXT -> (holder as MyViewHolder).textView!!.setText("TEXT_" + position)
-            TYPE_IMAGE ->  print("Image View")// (holder as MyImageHolder).imageView!!.setImageResource(R.drawable.image)
+            TYPE_IMAGE -> print("Image View")// (holder as MyImageHolder).imageView!!.setImageResource(R.drawable.image)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return if (position % 2 == 0) TYPE_IMAGE else TYPE_TEXT
     }
+
     //  private val count = 20
     private var activity: Activity? = null
-    var dataList:List<String>
+    var dataList: List<String>
 
-    constructor(activity: Activity,dataList:List<String>) {
+    constructor(activity: Activity, dataList: List<String>) {
         this.activity = activity
-        this.dataList=dataList
+        this.dataList = dataList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
 
-        var holder: ViewHolder? =null
-        if(viewType%2==0) {
-            var view = LayoutInflater.from(activity!!.applicationContext).inflate(R.layout.recyclerview_item, parent, false)
-             holder = MyViewHolder(view)
-        }else{
+        var holder: ViewHolder? = null
+        if (viewType % 2 == 0) {
+            var view = LayoutInflater.from(activity).inflate(R.layout.recyclerview_item, parent, false)
+            holder = MyViewHolder(view)
+        } else {
 
-            var view = LayoutInflater.from(activity!!.applicationContext).inflate(R.layout.recylerview_item_image, parent, false)
-             holder= MyImageHolder(view)
+            var view = LayoutInflater.from(activity).inflate(R.layout.recylerview_item_image, parent, false)
+            holder = MyImageHolder(view)
         }
         return holder!!
     }

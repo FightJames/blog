@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         allDataRecyclerView.layoutManager = LinearLayoutManager(this)
         mainAdapter = MainAdapter(data!!, this)
         allDataRecyclerView.adapter = mainAdapter
+        allDataRecyclerView.layoutManager.scrollToPosition(0)
         refresh_layout.setOnRefreshListener {
-
             refresh_layout.isRefreshing = false
         }
     }

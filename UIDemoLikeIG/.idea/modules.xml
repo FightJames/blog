@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IGUI.iml" filepath="$PROJECT_DIR$/IGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UIDemoLikeIG.iml" filepath="$PROJECT_DIR$/UIDemoLikeIG.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
