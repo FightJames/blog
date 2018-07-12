@@ -1,4 +1,4 @@
 # KotlinRecyclerViewCustomer
 RecyclerViewCustomer
 picture
-https://github.com/FightJames/KotlinRecyclerViewCustomer/blob/master/system_screen.gif
+![image](https://github.com/FightJames/blog/blob/master/RecyclerViewCustomer/system_screen.gif)
