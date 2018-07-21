@@ -15,10 +15,19 @@ class MainActivity : AppCompatActivity() {
         mHandler = object : Handler() {
             override fun handleMessage(msg: Message?) {
                 test.text = msg!!.what.toString()
+
+                Handlers.loopThreadHanlder!!.postDelayed(object : Runnable {
+                    override fun run() {
+                        System.out.println("LoopThreadHandler")
+                        Handlers.loopThreadHanlder!!.postDelayed(this, 1000)
+                    }
+                }, 1000)
             }
         }
-        var thread=LoopThread(mHandler!!)
+        var thread = LoopThread(mHandler!!)
         thread.start()
+
+
         button.setOnClickListener {
             thread.stopThread()
         }

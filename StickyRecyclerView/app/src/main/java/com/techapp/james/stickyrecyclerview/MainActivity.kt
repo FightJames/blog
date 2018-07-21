@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
             list.add("台南")
             list.add("高雄")
         }
-        recyclerList.adapter = MyAdapter(list)
+
+        recyclerList.adapter = MyAdapter()
         recyclerList.layoutManager = LinearLayoutManager(this)
         recyclerList.addItemDecoration(ItemDecoration())
         recyclerList.addItemDecoration(DividerItemDecoration(this,LinearLayoutManager.VERTICAL))

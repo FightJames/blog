@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import kotlinx.android.synthetic.main.title_item.view.*
 
 
 class ItemDecoration : RecyclerView.ItemDecoration() {
@@ -19,7 +20,7 @@ class ItemDecoration : RecyclerView.ItemDecoration() {
         Log.d(TAG, "onDrawOver index " + index)
 
         var holder = parent.findViewHolderForAdapterPosition(index)
-
+//link list 效率
         if (holder is MyAdapter.TitleHolder) {
             var child = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
             currentTitle = child

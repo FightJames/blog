@@ -17,6 +17,11 @@ class LoopThread : Thread {
 
     override fun run() {
         Looper.prepare()
+        //create LoopThread's handler
+        var handler = Handler()
+        Handlers.loopThreadHanlder = handler
+
+
         var i = 0
         var msg = Message()
         msg.what = i

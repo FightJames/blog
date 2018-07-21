@@ -1,13 +1,42 @@
 package com.techapp.james.stickyrecyclerview
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item.view.*
+import kotlinx.android.synthetic.main.title_item.view.*
+import java.util.*
 
-class MyAdapter(var data: ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
     val TITLE = 1;
     val ITEM = 0;
+    val test: Test = Test()
+
+    constructor() {
+//        test.insertOrUpdate("台灣", "台南")
+//        test.insertOrUpdate("台灣", "斗六")
+//        test.insertOrUpdate("台灣", "台北")
+//        test.insertOrUpdate("台灣", "台東")
+//
+//        test.insertOrUpdate("中國", "廣東")
+//        test.insertOrUpdate("中國", "福建")
+//        test.insertOrUpdate("中國", "北京")
+//
+//        test.insertOrUpdate("美國", "")
+//        test.insertOrUpdate("中國", "福建")
+//        test.insertOrUpdate("中國", "北京")
+
+        val title = "abcdefghijklmnopqrst"
+        val item = "5041278963"
+
+        Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
+
+        title.forEach { t -> item.forEach { i -> test.insertOrUpdate(t.toString(),i.toString()) } }
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             TITLE -> {
@@ -23,23 +52,21 @@ class MyAdapter(var data: ArrayList<String>) : RecyclerView.Adapter<RecyclerView
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return test.count();
     }
 
     var flag = true
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        if (holder is TitleHolder) {
-//            if (flag) {
-//                holder.itemView.setBackgroundResource(R.color.colorAccent)
-//                flag = false
-//            }else{
-//                flag=true
-//            }
-//        }
+        if (holder is TitleHolder) {
+            holder.textView.text = test.getItem(position)
+        } else {
+            (holder as ItemHolder).textView.text = test.getItem(position)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (data[position].equals("台灣")) {
+        if (test.isTitle(test.getItem(position))) {
             return TITLE
         } else {
             return ITEM
@@ -48,9 +75,10 @@ class MyAdapter(var data: ArrayList<String>) : RecyclerView.Adapter<RecyclerView
     }
 
     class TitleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        var textView = itemView.titleTextView
     }
 
     class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var textView = itemView.textView
     }
 }
