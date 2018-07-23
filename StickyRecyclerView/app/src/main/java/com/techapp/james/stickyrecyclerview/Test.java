@@ -1,5 +1,6 @@
 package com.techapp.james.stickyrecyclerview;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -59,5 +60,13 @@ public class Test {
             size += item.size() + 1;
         }
         return size;
+    }
+
+    public ArrayList<String> getTitles() {
+        ArrayList<String> titles = new ArrayList<String>();
+        for (String title : titleMap.keySet()) {
+            titles.add(title);
+        }
+        return titles;
     }
 }
