@@ -3,7 +3,6 @@ package com.techapp.james.stickyrecyclerview
 import android.graphics.Canvas
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import kotlinx.android.synthetic.main.title_item.view.*
@@ -15,11 +14,11 @@ class ItemDecoration : RecyclerView.ItemDecoration {
     private var preBottom: Int = 0
     private var currentView: View? = null
     private val titleList: ArrayList<String>
-    private val test: Test
+    private val data: Data
 
-    constructor(test: Test) {
-        this.test = test
-        titleList = test.titles
+    constructor(data: Data) {
+        this.data = data
+        titleList = data.getTitles()
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -34,7 +33,7 @@ class ItemDecoration : RecyclerView.ItemDecoration {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
         }
         currentTitleView = currentView!!
-        currentTitleView.titleTextView.text = test.getTitle(index)
+        currentTitleView.titleTextView.text = data.getTitle(index)
 
         if (holder is MyAdapter.TitleHolder) {
 

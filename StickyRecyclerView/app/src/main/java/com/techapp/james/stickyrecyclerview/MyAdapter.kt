@@ -1,33 +1,31 @@
 package com.techapp.james.stickyrecyclerview
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_item.view.*
-import java.util.*
 
 class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     val TITLE = 1;
     val ITEM = 0;
-    val test: Test
+    val data: Data
 
-    constructor(test: Test) {
-        this.test = test
-//        test.insertOrUpdate("台灣", "台南")
-//        test.insertOrUpdate("台灣", "斗六")
-//        test.insertOrUpdate("台灣", "台北")
-//        test.insertOrUpdate("台灣", "台東")
+    constructor(data: Data) {
+        this.data = data
+//        data.insertOrUpdate("台灣", "台南")
+//        data.insertOrUpdate("台灣", "斗六")
+//        data.insertOrUpdate("台灣", "台北")
+//        data.insertOrUpdate("台灣", "台東")
 //
-//        test.insertOrUpdate("中國", "廣東")
-//        test.insertOrUpdate("中國", "福建")
-//        test.insertOrUpdate("中國", "北京")
+//        data.insertOrUpdate("中國", "廣東")
+//        data.insertOrUpdate("中國", "福建")
+//        data.insertOrUpdate("中國", "北京")
 //
-//        test.insertOrUpdate("美國", "")
-//        test.insertOrUpdate("中國", "福建")
-//        test.insertOrUpdate("中國", "北京")
+//        data.insertOrUpdate("美國", "")
+//        data.insertOrUpdate("中國", "福建")
+//        data.insertOrUpdate("中國", "北京")
 
     }
 
@@ -46,21 +44,21 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     override fun getItemCount(): Int {
-        return test.count();
+        return data.count();
     }
 
     var flag = true
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleHolder) {
-            holder.textView.text = test.getItem(position)
+            holder.textView.text = data.getItem(position)
         } else {
-            (holder as ItemHolder).textView.text = test.getItem(position)
+            (holder as ItemHolder).textView.text = data.getItem(position)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (test.isTitle(test.getItem(position))) {
+        if (data.isTitle(data.getItem(position))) {
             return TITLE
         } else {
             return ITEM
