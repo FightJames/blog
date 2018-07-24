@@ -1,7 +1,6 @@
 package com.techapp.james.stickyrecyclerview;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -27,6 +26,17 @@ public class Test {
             String res = find(key, titleMap.get(key), pos);
             if (res != null) {
                 return res;
+            }
+            pos -= titleMap.get(key).size() + 1;
+        }
+        throw new RuntimeException("not found");
+    }
+
+    public String getTitle(int pos) {
+        for (String key : titleMap.keySet()) {
+            String res = find(key, titleMap.get(key), pos);
+            if (res != null) {
+                return key;
             }
             pos -= titleMap.get(key).size() + 1;
         }

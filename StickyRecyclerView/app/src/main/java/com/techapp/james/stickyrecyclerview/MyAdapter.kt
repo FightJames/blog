@@ -9,12 +9,13 @@ import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_item.view.*
 import java.util.*
 
-class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
+class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     val TITLE = 1;
     val ITEM = 0;
-    val test: Test = Test()
+    val test: Test
 
-    constructor() {
+    constructor(test: Test) {
+        this.test = test
 //        test.insertOrUpdate("台灣", "台南")
 //        test.insertOrUpdate("台灣", "斗六")
 //        test.insertOrUpdate("台灣", "台北")
@@ -27,13 +28,6 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
 //        test.insertOrUpdate("美國", "")
 //        test.insertOrUpdate("中國", "福建")
 //        test.insertOrUpdate("中國", "北京")
-
-        val title = "abcdefghijklmnopqrst"
-        val item = "5041278963"
-
-        Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
-
-        title.forEach { t -> item.forEach { i -> test.insertOrUpdate(t.toString(),i.toString()) } }
 
     }
 
