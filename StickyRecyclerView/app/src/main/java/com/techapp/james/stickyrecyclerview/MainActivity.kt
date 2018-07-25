@@ -14,18 +14,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val data: Data = Data()
+        val concreteData: ConcreteData = ConcreteData()
         val title = "abcdefghijklmnopqrst"
         val item = "5041278963"
 
         Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
 
-        title.forEach { t -> item.forEach { i -> data.insertOrUpdate(t.toString(), i.toString()) } }
-        var myAdapter = MyAdapter(data)
+        title.forEach { t -> item.forEach { i -> concreteData.insertOrUpdate(t.toString(), i.toString()) } }
+        var myAdapter = MyAdapter(concreteData)
         recyclerList.adapter = myAdapter
         recyclerList.layoutManager = LinearLayoutManager(this)
-        recyclerList.addItemDecoration(ItemDecoration(data))
-
+        recyclerList.addItemDecoration(ItemDecoration(concreteData))
         recyclerList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 }

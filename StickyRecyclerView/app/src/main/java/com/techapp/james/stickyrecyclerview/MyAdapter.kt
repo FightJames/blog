@@ -10,22 +10,22 @@ import kotlinx.android.synthetic.main.title_item.view.*
 class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     val TITLE = 1;
     val ITEM = 0;
-    val data: Data
+    val concreteData: ConcreteData
 
-    constructor(data: Data) {
-        this.data = data
-//        data.insertOrUpdate("台灣", "台南")
-//        data.insertOrUpdate("台灣", "斗六")
-//        data.insertOrUpdate("台灣", "台北")
-//        data.insertOrUpdate("台灣", "台東")
+    constructor(concreteData: ConcreteData) {
+        this.concreteData = concreteData
+//        concreteData.insertOrUpdate("台灣", "台南")
+//        concreteData.insertOrUpdate("台灣", "斗六")
+//        concreteData.insertOrUpdate("台灣", "台北")
+//        concreteData.insertOrUpdate("台灣", "台東")
 //
-//        data.insertOrUpdate("中國", "廣東")
-//        data.insertOrUpdate("中國", "福建")
-//        data.insertOrUpdate("中國", "北京")
+//        concreteData.insertOrUpdate("中國", "廣東")
+//        concreteData.insertOrUpdate("中國", "福建")
+//        concreteData.insertOrUpdate("中國", "北京")
 //
-//        data.insertOrUpdate("美國", "")
-//        data.insertOrUpdate("中國", "福建")
-//        data.insertOrUpdate("中國", "北京")
+//        concreteData.insertOrUpdate("美國", "")
+//        concreteData.insertOrUpdate("中國", "福建")
+//        concreteData.insertOrUpdate("中國", "北京")
 
     }
 
@@ -44,21 +44,21 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     override fun getItemCount(): Int {
-        return data.count();
+        return concreteData.count();
     }
 
     var flag = true
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleHolder) {
-            holder.textView.text = data.getItem(position)
+            holder.textView.text = concreteData.getItem(position)
         } else {
-            (holder as ItemHolder).textView.text = data.getItem(position)
+            (holder as ItemHolder).textView.text = concreteData.getItem(position)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (data.isTitle(data.getItem(position))) {
+        if (concreteData.isTitle(concreteData.getItem(position))) {
             return TITLE
         } else {
             return ITEM

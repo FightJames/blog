@@ -16,6 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".dynamic.DynamicActivity" />
+        <activity android:name=".staticReceiver.StaticActivity"></activity>
+
+        <receiver
+            android:name=".staticReceiver.StaticBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="Hello" />
+                />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

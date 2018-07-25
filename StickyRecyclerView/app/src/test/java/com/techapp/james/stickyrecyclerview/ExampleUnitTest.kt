@@ -5,7 +5,7 @@ import org.junit.Test
 import org.junit.Assert.*
 
 /**
- * Example local unit data, which will execute on the development machine (host).
+ * Example local unit concreteData, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
@@ -17,8 +17,8 @@ class ExampleUnitTest {
 
     @Test
     fun testData() {
-        //data key set
-        var data = Data()
+        //concreteData key set
+        var data = ConcreteData()
         var title = "abcdefg"
         var item = "123456"
         title.forEach { t -> item.forEach { i -> data.insertOrUpdate(t.toString(), i.toString()) } }

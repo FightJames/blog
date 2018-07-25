@@ -1,4 +1,4 @@
-package com.techapp.james.broadcastdemo
+package com.techapp.james.broadcastdemo.dynamic
 
 import android.content.BroadcastReceiver
 import android.content.Context

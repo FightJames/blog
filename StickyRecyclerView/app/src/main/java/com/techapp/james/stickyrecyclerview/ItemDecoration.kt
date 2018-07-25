@@ -14,11 +14,11 @@ class ItemDecoration : RecyclerView.ItemDecoration {
     private var preBottom: Int = 0
     private var currentView: View? = null
     private val titleList: ArrayList<String>
-    private val data: Data
+    private val concreteData: ConcreteData
 
-    constructor(data: Data) {
-        this.data = data
-        titleList = data.getTitles()
+    constructor(concreteData: ConcreteData) {
+        this.concreteData = concreteData
+        titleList = concreteData.getTitles()
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -33,10 +33,10 @@ class ItemDecoration : RecyclerView.ItemDecoration {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
         }
         currentTitleView = currentView!!
-        currentTitleView.titleTextView.text = data.getTitle(index)
+        currentTitleView.titleTextView.text = concreteData.getTitle(index)
 
         if (holder is MyAdapter.TitleHolder) {
-
+//            currentTitleView.titleTextView.text = (holder as MyAdapter.TitleHolder).textView.text
             var titleHolder = holder as MyAdapter.TitleHolder
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
