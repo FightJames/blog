@@ -7,8 +7,7 @@ import android.widget.Toast
 
 class StaticBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Toast.makeText(context, Thread.currentThread().toString(), Toast.LENGTH_LONG).show()
         //test receiver run main thread
-        print(Thread.currentThread())
+        Toast.makeText(context, Thread.currentThread().toString(), Toast.LENGTH_LONG).show()
     }
 }
