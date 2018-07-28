@@ -7,26 +7,13 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_item.view.*
 
-class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class StickyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     val TITLE = 1;
     val ITEM = 0;
     val concreteData: ConcreteData
 
     constructor(concreteData: ConcreteData) {
         this.concreteData = concreteData
-//        concreteData.insertOrUpdate("台灣", "台南")
-//        concreteData.insertOrUpdate("台灣", "斗六")
-//        concreteData.insertOrUpdate("台灣", "台北")
-//        concreteData.insertOrUpdate("台灣", "台東")
-//
-//        concreteData.insertOrUpdate("中國", "廣東")
-//        concreteData.insertOrUpdate("中國", "福建")
-//        concreteData.insertOrUpdate("中國", "北京")
-//
-//        concreteData.insertOrUpdate("美國", "")
-//        concreteData.insertOrUpdate("中國", "福建")
-//        concreteData.insertOrUpdate("中國", "北京")
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -47,7 +34,6 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return concreteData.count();
     }
 
-    var flag = true
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleHolder) {

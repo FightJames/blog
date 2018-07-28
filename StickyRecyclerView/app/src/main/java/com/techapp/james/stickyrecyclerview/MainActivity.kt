@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
 
         title.forEach { t -> item.forEach { i -> concreteData.insertOrUpdate(t.toString(), i.toString()) } }
-        var myAdapter = MyAdapter(concreteData)
+        var myAdapter = StickyAdapter(concreteData)
         recyclerList.adapter = myAdapter
         recyclerList.layoutManager = LinearLayoutManager(this)
         recyclerList.addItemDecoration(ItemDecoration(concreteData))

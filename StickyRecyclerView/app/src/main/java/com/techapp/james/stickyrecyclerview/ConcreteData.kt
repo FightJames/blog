@@ -3,14 +3,14 @@ package com.techapp.james.stickyrecyclerview
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ConcreteData {
+class ConcreteData : Data {
     val data: TreeMap<String, TreeSet<String>>
 
     constructor() {
         data = TreeMap<String, TreeSet<String>>()
     }
 
-    fun insertOrUpdate(title: String, item: String) {
+    override fun insertOrUpdate(title: String, item: String) {
         if (data.containsKey(title)) {
             var itemSet = data.get(title)
             itemSet!!.add(item)
@@ -21,7 +21,7 @@ class ConcreteData {
         }
     }
 
-    fun getItem(_pos: Int): String {
+    override fun getItem(_pos: Int): String {
         var pos = _pos
         for (key in data.keys) {
             var itemSet = data.get(key)!!
@@ -34,13 +34,13 @@ class ConcreteData {
         throw RuntimeException("Can't find concreteData")
     }
 
-    fun getTitles(): ArrayList<String> {
+    override fun getTitles(): ArrayList<String> {
         var list = ArrayList<String>()
         data.forEach { k, v -> list.add(k) }
         return list
     }
 
-    fun getTitle(_pos: Int): String {
+    override fun getTitle(_pos: Int): String {
         var pos = _pos
         for (key: String in data.keys) {
             var itemSet = data.get(key)!!
@@ -68,13 +68,13 @@ class ConcreteData {
         return null
     }
 
-    fun count(): Int {
+    override fun count(): Int {
         var count = 0
         data.forEach { t, u -> count += u.size + 1 }
         return count
     }
 
-    fun isTitle(title: String): Boolean {
+    override fun isTitle(title: String): Boolean {
         return data.containsKey(title)
     }
 }
