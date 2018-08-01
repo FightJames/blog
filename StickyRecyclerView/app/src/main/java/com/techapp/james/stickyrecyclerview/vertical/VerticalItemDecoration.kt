@@ -1,4 +1,4 @@
-package com.techapp.james.stickyrecyclerview
+package com.techapp.james.stickyrecyclerview.vertical
 
 import android.graphics.Canvas
 import android.support.v7.widget.LinearLayoutManager
@@ -6,16 +6,18 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import com.techapp.james.stickyrecyclerview.dataStructure.Data
+import com.techapp.james.stickyrecyclerview.R
 import kotlinx.android.synthetic.main.title_item.view.*
 
 
-class ItemDecoration : RecyclerView.ItemDecoration {
+class VerticalItemDecoration : RecyclerView.ItemDecoration {
     private lateinit var currentTitleView: View
     private var currentView: View? = null
     private val titleList: ArrayList<String>
-    private val concreteData: ConcreteData
+    private val concreteData: Data
 
-    constructor(concreteData: ConcreteData) {
+    constructor(concreteData: Data) {
         this.concreteData = concreteData
         titleList = concreteData.getTitles()
     }
@@ -34,8 +36,8 @@ class ItemDecoration : RecyclerView.ItemDecoration {
         currentTitleView = currentView!!
         currentTitleView.titleTextView.text = concreteData.getTitle(index)
 
-        if (holder is StickyAdapter.TitleHolder) {
-            var titleHolder = holder as StickyAdapter.TitleHolder
+        if (holder is VerticalAdapter.TitleHolder) {
+            var titleHolder = holder as VerticalAdapter.TitleHolder
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
@@ -48,11 +50,12 @@ class ItemDecoration : RecyclerView.ItemDecoration {
             currentTitleView.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
             var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
-            if (nextHolder is StickyAdapter.TitleHolder) {
+            if (nextHolder is VerticalAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
                 val bottomSpacing = currentTitleView.bottom - currentTitleView.titleTextView.bottom
                 //
                 Log.d("BottomSpacing ", currentTitleView.bottom.toString() + "  " + currentTitleView.titleTextView.bottom + " " + bottomSpacing.toString())
+
                 val titleBottom = Math.min(holder!!.itemView.height, nextHolder.itemView.top)
                 currentTitleView.layout(0, 0, holder!!.itemView.width, titleBottom)
 

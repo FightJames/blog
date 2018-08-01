@@ -1,4 +1,4 @@
-package com.techapp.james.stickyrecyclerview
+package com.techapp.james.stickyrecyclerview.dataStructure
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,6 +19,25 @@ class ConcreteData : Data {
             itemSet.add(item)
             data.put(title, itemSet)
         }
+    }
+
+    override fun remove(_pos: Int): Boolean {
+        var pos = _pos
+        for (key: String in data.keys) {
+            var items = data.get(key)!!
+            var res = find(key, items, pos)
+            if (res != null) {
+                if (pos == 0) {
+                    data.remove(res)
+                    return true
+                } else {
+                    data.get(key)!!.remove(res)
+                    return true
+                }
+            }
+            pos -= items.size + 1
+        }
+        return false
     }
 
     override fun getItem(_pos: Int): String {

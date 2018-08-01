@@ -1,5 +1,6 @@
 package com.techapp.james.stickyrecyclerview
 
+import com.techapp.james.stickyrecyclerview.dataStructure.ConcreteData
 import org.junit.Test
 
 import org.junit.Assert.*

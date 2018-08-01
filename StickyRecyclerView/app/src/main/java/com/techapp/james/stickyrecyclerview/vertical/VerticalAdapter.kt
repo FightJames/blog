@@ -1,18 +1,20 @@
-package com.techapp.james.stickyrecyclerview
+package com.techapp.james.stickyrecyclerview.vertical
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.techapp.james.stickyrecyclerview.dataStructure.Data
+import com.techapp.james.stickyrecyclerview.R
 import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_item.view.*
 
-class StickyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    val TITLE = 1;
-    val ITEM = 0;
-    val concreteData: ConcreteData
+class VerticalAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    val TITLE = 1
+    val ITEM = 0
+    val concreteData: Data
 
-    constructor(concreteData: ConcreteData) {
+    constructor(concreteData: Data) {
         this.concreteData = concreteData
     }
 

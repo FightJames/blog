@@ -1,4 +1,4 @@
-package com.techapp.james.stickyrecyclerview;
+package com.techapp.james.stickyrecyclerview.dataStructure;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
