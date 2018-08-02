@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="StickyRecyclerView">
         <attr name="enableDivider" format="boolean" />
+        <attr name="isVertical" format="boolean" />
     </declare-styleable>
 </resources>

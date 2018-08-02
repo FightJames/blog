@@ -13,6 +13,7 @@ class HorizonAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     val TITLE = 1
     val ITEM = 0
     val concreteData: Data
+    var sendTitleDecoration: ((title: String, width: Int) -> Unit)? = null
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
@@ -39,6 +40,7 @@ class HorizonAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleHolder) {
             holder.textView.text = concreteData.getItem(position)
+            sendTitleDecoration?.invoke(concreteData.getItem(position), holder.itemView.width)
         } else {
             (holder as ItemHolder).textView.text = concreteData.getItem(position)
         }

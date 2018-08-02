@@ -16,10 +16,15 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
     private var currentView: View? = null
     private val titleList: ArrayList<String>
     private val concreteData: Data
+    private var titleData = HashMap<String, Int>()
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
         titleList = concreteData.getTitles()
+    }
+
+    fun putTitleData(title: String, height: Int) {
+        titleData.put(title, height)
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -68,7 +73,12 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
                 }
                 currentTitleView.draw(c!!)
             } else {
-                currentTitleView.layout(0, 0, holder!!.itemView.width, holder!!.itemView.height)
+                var height = titleData.get(currentTitleView.titleTextView.text.toString())
+                if (height != null && height != 0) {
+                    currentTitleView.layout(0, 0, holder!!.itemView.width, height)
+                } else {
+                    currentTitleView.layout(0, 0, holder!!.itemView.width, holder!!.itemView.height)
+                }
                 currentTitleView.draw(c!!)
             }
         }

@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import com.techapp.james.stickyrecyclerview.dataStructure.Data
 import com.techapp.james.stickyrecyclerview.R
-import com.techapp.james.stickyrecyclerview.vertical.VerticalAdapter
+import com.techapp.james.stickyrecyclerview.dataStructure.Data
+import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_horizon.view.*
 
 class HorizonItemDecoration : RecyclerView.ItemDecoration {
@@ -17,10 +17,15 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
     private var currentView: View? = null
     private val titleList: ArrayList<String>
     private val concreteData: Data
+    private val titleData = HashMap<String, Int>()
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
         titleList = concreteData.getTitles()
+    }
+
+    fun putTitleData(title: String, width: Int) {
+        titleData.put(title, width)
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -55,7 +60,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
                 var textView = currentTitleView.titleTextView
                 val rightSpacing = currentTitleView.right - currentTitleView.titleTextView.right
                 //
-                Log.d("RightSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightSpacing.toString())
+                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightSpacing.toString())
 
                 val titleRight = Math.min(holder!!.itemView.width, nextHolder.itemView.left)
                 currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
@@ -69,7 +74,14 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
                 }
                 currentTitleView.draw(c!!)
             } else {
-                currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
+                var width = titleData.get(currentTitleView.titleTextView.text.toString())
+                var titleString = currentTitleView.titleTextView.text.toString()
+                Log.d("CurrentTitleView ", "$titleString $width")
+                if (width != null && width != 0) {
+                    currentTitleView.layout(0, 0, width, currentTitleView.height)
+                } else {
+                    currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
+                }
                 currentTitleView.draw(c!!)
             }
         }
