@@ -60,8 +60,8 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
                 val bottomSpacing = currentTitleView.bottom - currentTitleView.titleTextView.bottom
                 //
                 Log.d("BottomSpacing ", currentTitleView.bottom.toString() + "  " + currentTitleView.titleTextView.bottom + " " + bottomSpacing.toString())
-
-                val titleBottom = Math.min(holder!!.itemView.height, nextHolder.itemView.top)
+                var viewHeigh = titleData.get(currentTitleView.titleTextView.text.toString())!!
+                val titleBottom = Math.min(holder!!.itemView.height, viewHeigh)
                 currentTitleView.layout(0, 0, holder!!.itemView.width, titleBottom)
 
                 val textTopSpacing = textView.bottom - textView.top

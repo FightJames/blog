@@ -43,12 +43,13 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         currentTitleView.titleTextView.text = concreteData.getTitle(index)
 
         if (holder is HorizonAdapter.TitleHolder) {
-            Log.d("Pass", " " + (holder as HorizonAdapter.TitleHolder).itemView.titleTextView.text)
             var titleHolder = holder as HorizonAdapter.TitleHolder
+            //solve problem in adapter
+            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.width)
+
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
-//            Log.d("WH", holder.itemView.width.toString() + "  " + holder.itemView.height.toString())
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
         } else {
@@ -60,15 +61,16 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
             if (nextHolder is HorizonAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
                 val rightSpacing = currentTitleView.right - currentTitleView.titleTextView.right
-                //
                 Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightSpacing.toString())
-                var titleRight = currentTitleView.right
+                val viewWidth = titleData.get(currentTitleView.titleTextView.text.toString())!!
+                var titleRight: Int
+                if (viewWidth != 0) {
+                    titleRight = Math.min(holder!!.itemView.right, viewWidth)
+                } else {
+                    titleRight = Math.min(holder!!.itemView.right, standar)
+                }
 
                 Log.d("Width ", standar.toString())
-                var tmp = Math.min(holder!!.itemView.right, nextHolder!!.itemView.left)
-//                if (currentTitleView.width > tmp) {
-                    titleRight = Math.min(holder!!.itemView.right, standar)
-//                }
 
                 currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
 
