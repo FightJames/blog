@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 //        recyclerList.layoutManager = LinearLayoutManager(this)
 //        recyclerList.addItemDecoration(VerticalItemDecoration(concreteData))
 
-        title.forEach { t -> item.forEach { i -> recyclerList.insertOrUpdate(t.toString(), i.toString()) } }
+        title.forEach { t -> item.forEach { i -> recyclerList.insertOrUpdate(t.toString(), i.toString()+"djsjdkjfjeivnienirjfijeiofjioehgioehiofheoigh") } }
 //        recyclerList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 }

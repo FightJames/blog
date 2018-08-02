@@ -18,6 +18,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
     private val titleList: ArrayList<String>
     private val concreteData: Data
     private val titleData = HashMap<String, Int>()
+    private var standar = 100
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
@@ -61,8 +62,14 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
                 val rightSpacing = currentTitleView.right - currentTitleView.titleTextView.right
                 //
                 Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightSpacing.toString())
+                var titleRight = currentTitleView.right
 
-                val titleRight = Math.min(holder!!.itemView.width, nextHolder.itemView.left)
+                Log.d("Width ", standar.toString())
+                var tmp = Math.min(holder!!.itemView.right, nextHolder!!.itemView.left)
+//                if (currentTitleView.width > tmp) {
+                    titleRight = Math.min(holder!!.itemView.right, standar)
+//                }
+
                 currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
 
                 val textLeftSpacing = textView.right - textView.left

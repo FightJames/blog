@@ -34,6 +34,13 @@ class StickyRecyclerView : RecyclerView {
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+        val a = context.theme.obtainStyledAttributes(
+                attrs,
+                R.styleable.StickyRecyclerView,
+                0, 0)
+        isEnableDivider = a.getBoolean(R.styleable.StickyRecyclerView_enableDivider, true)
+
+        isVertical = a.getBoolean(R.styleable.StickyRecyclerView_isVertical, true)
         init()
     }
 
