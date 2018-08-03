@@ -19,6 +19,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
     private val concreteData: Data
     private val titleData = HashMap<String, Int>()
     private var standar = 100
+    private var textViewWidth: Int = 0
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
@@ -52,6 +53,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
             currentTitleView.measure(measureWidth, measuredHeight)
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
+            textViewWidth = currentTitleView.titleTextView.width
         } else {
             val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
@@ -74,12 +76,13 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
 
                 currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
 
-                val textLeftSpacing = textView.right - textView.left
+//                val textLeftSpacing = textView.right - textView.left
                 textView.right = titleRight - rightSpacing
-                textView.left = textView.right - textLeftSpacing
+                textView.left = textView.right -textViewWidth
                 if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
                     val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
                     currentTitleView.titleTextView.text = title
+                    textViewWidth = currentTitleView.titleTextView.width
                 }
                 currentTitleView.draw(c!!)
             } else {

@@ -1,6 +1,8 @@
 package com.techapp.james.stickyrecyclerview.vertical
 
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -12,21 +14,23 @@ import kotlinx.android.synthetic.main.title_item.view.*
 
 
 class VerticalItemDecoration : RecyclerView.ItemDecoration {
+
     private lateinit var currentTitleView: View
     private var currentView: View? = null
     private val titleList: ArrayList<String>
     private val concreteData: Data
-    private var titleData = HashMap<String, Int>()
+    private val titleData = HashMap<String, Int>()
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
         titleList = concreteData.getTitles()
     }
 
-    fun putTitleData(title: String, height: Int) {
-        titleData.put(title, height)
+    fun putTitleData(title: String, width: Int) {
+        titleData.put(title, width)
     }
 
+    var textHeight: Int = 0
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state);
         var index = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
@@ -34,7 +38,6 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
         parent.getChildAt(0)?.let {
             holder = parent.getChildViewHolder(it)
         }
-
         if (currentView == null) {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
         }
@@ -43,41 +46,45 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
 
         if (holder is VerticalAdapter.TitleHolder) {
             var titleHolder = holder as VerticalAdapter.TitleHolder
+            //solve problem in adapter
+            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.height)
+
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
+            textHeight = currentView!!.titleTextView.measuredHeight
             currentTitleView.measure(measureWidth, measuredHeight)
-//            Log.d("WH", holder.itemView.width.toString() + "  " + holder.itemView.height.toString())
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
         } else {
-            val measureWidth = View.MeasureSpec.makeMeasureSpec(holder!!.itemView.width, View.MeasureSpec.EXACTLY)
-            val measuredHeight = View.MeasureSpec.makeMeasureSpec(holder!!.itemView.height, View.MeasureSpec.EXACTLY)
+            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
+            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
             var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
             if (nextHolder is VerticalAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
                 val bottomSpacing = currentTitleView.bottom - currentTitleView.titleTextView.bottom
-                //
-                Log.d("BottomSpacing ", currentTitleView.bottom.toString() + "  " + currentTitleView.titleTextView.bottom + " " + bottomSpacing.toString())
-                var viewHeigh = titleData.get(currentTitleView.titleTextView.text.toString())!!
-                val titleBottom = Math.min(holder!!.itemView.height, viewHeigh)
+                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomSpacing.toString())
+                val viewHeigh = titleData.get(currentTitleView.titleTextView.text.toString())!!
+                var titleBottom = Math.min(nextHolder!!.itemView.top, viewHeigh)
                 currentTitleView.layout(0, 0, holder!!.itemView.width, titleBottom)
-
-                val textTopSpacing = textView.bottom - textView.top
                 textView.bottom = titleBottom - bottomSpacing
-                textView.top = textView.bottom - textTopSpacing
+                textView.top = textView.bottom - textHeight
+                Log.d("textViewHeight ", textHeight.toString())
                 if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
                     val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
                     currentTitleView.titleTextView.text = title
                 }
+//                currentTitleView.setBackgroundColor(Color.BLACK)
                 currentTitleView.draw(c!!)
             } else {
-                var height = titleData.get(currentTitleView.titleTextView.text.toString())
-                if (height != null && height != 0) {
-                    currentTitleView.layout(0, 0, holder!!.itemView.width, height)
+                var heigh = titleData.get(currentTitleView.titleTextView.text.toString())
+                var titleString = currentTitleView.titleTextView.text.toString()
+                Log.d("CurrentTitleView ", "$titleString $heigh")
+                if (heigh != null && heigh != 0) {
+                    currentTitleView.layout(0, 0, currentTitleView.width, heigh)
                 } else {
-                    currentTitleView.layout(0, 0, holder!!.itemView.width, holder!!.itemView.height)
+                    currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
                 }
                 currentTitleView.draw(c!!)
             }
