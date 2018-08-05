@@ -26,7 +26,7 @@ class RecyclerViewTest {
     @Test
     fun scrollToItemBelowFold() {
         mActivityRule.activity
-        var viewInteraction = onView(withId(R.id.recyclerList))
+        var viewInteraction = onView(withId(R.id.recyclerListVertical))
         viewInteraction.perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(BELOW_FOLD))
         val data = "a"
         onView(withText(data)).check(matches(isDisplayed()))
