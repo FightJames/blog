@@ -2,7 +2,7 @@ This is StickyRecyclerView.
 
 ![image](https://github.com/FightJames/blog/blob/master/StickyRecyclerView/gif_20180805_140632.gif)
 
-#h1 How to use
+# h1 How to use
 ```
     <com.techapp.james.stickyrecyclerview.StickyRecyclerView
         android:id="@+id/recyclerListVertical"
