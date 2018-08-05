@@ -1,8 +1,6 @@
 package com.techapp.james.stickyrecyclerview.vertical
 
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -63,19 +61,15 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
             var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
             if (nextHolder is VerticalAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
-                val bottomSpacing = currentTitleView.bottom - currentTitleView.titleTextView.bottom
-                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomSpacing.toString())
+                val bottomPadding = currentTitleView.bottom - currentTitleView.titleTextView.bottom
+//                Log.d("RightTextPadding ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomPadding.toString())
                 val viewHeigh = titleData.get(currentTitleView.titleTextView.text.toString())!!
                 var titleBottom = Math.min(nextHolder!!.itemView.top, viewHeigh)
                 currentTitleView.layout(0, 0, holder!!.itemView.width, titleBottom)
-                textView.bottom = titleBottom - bottomSpacing
+                textView.bottom = titleBottom - bottomPadding
                 textView.top = textView.bottom - textHeight
                 Log.d("textViewHeight ", textHeight.toString())
-                if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
-                    val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
-                    currentTitleView.titleTextView.text = title
-                }
-//                currentTitleView.setBackgroundColor(Color.BLACK)
+                getLastTitle(nextHolder)
                 currentTitleView.draw(c!!)
             } else {
                 var heigh = titleData.get(currentTitleView.titleTextView.text.toString())
@@ -88,6 +82,13 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
                 }
                 currentTitleView.draw(c!!)
             }
+        }
+    }
+
+    private fun getLastTitle(nextHolder: VerticalAdapter.TitleHolder) {
+        if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
+            val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
+            currentTitleView.titleTextView.text = title
         }
     }
 }
