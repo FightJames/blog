@@ -16,14 +16,20 @@ How to use
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerListHorizon" />
 ```
+
+# h2 To display divider.
+
+```
 app:enableDivider="true"
-To display divider.
+```
 
+# h2 To adjust View is vertical or horizon
+```
 app:isVertical="true"
-To adjust View is vertical or horizon
+```
 
 
-Insert Data
+# h2 Insert Data
 ```
         val title = "abcdefghijklmnopqrst"
         val item = "50412789458263"
