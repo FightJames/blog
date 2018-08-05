@@ -2,7 +2,7 @@ This is StickyRecyclerView.
 
 ![image](https://github.com/FightJames/blog/blob/master/StickyRecyclerView/gif_20180805_140632.gif)
 
-# h1 How to use
+#  How to use
 ```
     <com.techapp.james.stickyrecyclerview.StickyRecyclerView
         android:id="@+id/recyclerListVertical"
@@ -17,19 +17,19 @@ This is StickyRecyclerView.
         app:layout_constraintTop_toBottomOf="@+id/recyclerListHorizon" />
 ```
 
-# h2 To display divider.
+#  To display divider.
 
 ```
 app:enableDivider="true"
 ```
 
-# h2 To adjust View is vertical or horizon
+#  To adjust View is vertical or horizon
 ```
 app:isVertical="true"
 ```
 
 
-# h2 Insert Data
+#  Insert Data
 ```
         val title = "abcdefghijklmnopqrst"
         val item = "50412789458263"
