@@ -61,7 +61,13 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
-            var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
+            var nextHolder: RecyclerView.ViewHolder? = null
+            for (i in 1..10) {
+                nextHolder = parent.findViewHolderForAdapterPosition(index + i)
+                if (nextHolder is VerticalAdapter.TitleHolder) {
+                    break
+                }
+            }
             if (nextHolder is VerticalAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
 //                Log.d("RightTextPadding ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomPadding.toString())
@@ -91,6 +97,10 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
         if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
             val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
             currentTitleView.titleTextView.text = title
+            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.titleTextView.width, View.MeasureSpec.EXACTLY)
+            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.titleTextView.height, View.MeasureSpec.EXACTLY)
+            currentTitleView.titleTextView.measure(measureWidth, measuredHeight)
+            textHeight = currentTitleView.titleTextView.measuredHeight
         }
     }
 }

@@ -58,7 +58,13 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
-            var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
+            var nextHolder: RecyclerView.ViewHolder? = null
+            for (i in 1..10) {
+                nextHolder = parent.findViewHolderForAdapterPosition(index + i)
+                if (nextHolder is HorizonAdapter.TitleHolder) {
+                    break
+                }
+            }
             if (nextHolder is HorizonAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
                 val rightPadding = currentTitleView.right - currentTitleView.titleTextView.right
