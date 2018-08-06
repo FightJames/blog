@@ -29,6 +29,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
     }
 
     var textHeight: Int = 0
+    var bottomPadding: Int = 0
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state);
         var index = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
@@ -50,6 +51,8 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             textHeight = currentView!!.titleTextView.measuredHeight
+
+            bottomPadding = currentTitleView.measuredHeight - currentTitleView.titleTextView.bottom
             currentTitleView.measure(measureWidth, measuredHeight)
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
@@ -61,7 +64,6 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
             var nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
             if (nextHolder is VerticalAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
-                val bottomPadding = currentTitleView.bottom - currentTitleView.titleTextView.bottom
 //                Log.d("RightTextPadding ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomPadding.toString())
                 val viewHeigh = titleData.get(currentTitleView.titleTextView.text.toString())!!
                 var titleBottom = Math.min(nextHolder!!.itemView.top, viewHeigh)
