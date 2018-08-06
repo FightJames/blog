@@ -1,6 +1,7 @@
 package com.techapp.james.stickyrecyclerview.horizon
 
 import android.graphics.Canvas
+import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -41,31 +42,35 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         }
         currentTitleView = currentView!!
         currentTitleView.titleTextView.text = concreteData.getTitle(index)
+//        Log.d("Title ", concreteData.getTitle(index))
+        currentTitleView.setBackgroundColor(Color.RED)
 
         if (holder is HorizonAdapter.TitleHolder) {
             var titleHolder = holder as HorizonAdapter.TitleHolder
             //solve problem in adapter
             titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.width)
-
+            Log.d("title ", currentTitleView.titleTextView.text.toString())
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
-            textViewWidth = currentTitleView.titleTextView.width
+            textViewWidth = currentTitleView.width
         } else {
-            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
-            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
-            currentTitleView.measure(measureWidth, measuredHeight)
+//            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
+//            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
+//            currentTitleView.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
             var nextHolder: RecyclerView.ViewHolder? = null
-            for (i in 1..10) {
-                nextHolder = parent.findViewHolderForAdapterPosition(index + i)
-                if (nextHolder is HorizonAdapter.TitleHolder) {
+            Log.d("index ", index.toString())
+            for (i in index + 1..concreteData.count() - 1) {
+                if (parent.findViewHolderForAdapterPosition(i) is HorizonAdapter.TitleHolder) {
+                    nextHolder = parent.findViewHolderForAdapterPosition(i)
                     break
                 }
             }
-            if (nextHolder is HorizonAdapter.TitleHolder) {
+            Log.d("NextHolder ", (nextHolder as HorizonAdapter.TitleHolder).textView.text.toString())
+            if (nextHolder != null) {
                 var textView = currentTitleView.titleTextView
                 val rightPadding = currentTitleView.right - currentTitleView.titleTextView.right
 //                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightPadding.toString())
@@ -84,18 +89,18 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
 //                val textLeftSpacing = textView.right - textView.left
                 textView.right = titleRight - rightPadding
                 textView.left = textView.right - textViewWidth
-                getLastTitleAndWidth(nextHolder)
+                getLastTitleAndWidth(nextHolder as HorizonAdapter.TitleHolder)
                 currentTitleView.draw(c!!)
             } else {
-                var width = titleData.get(currentTitleView.titleTextView.text.toString())
-                var titleString = currentTitleView.titleTextView.text.toString()
-//                Log.d("CurrentTitleView ", "$titleString $width")
-                if (width != null && width != 0) {
-                    currentTitleView.layout(0, 0, width, currentTitleView.height)
-                } else {
-                    currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
-                }
-                currentTitleView.draw(c!!)
+//                var width = titleData.get(currentTitleView.titleTextView.text.toString())
+//                var titleString = currentTitleView.titleTextView.text.toString()
+////                Log.d("CurrentTitleView ", "$titleString $width")
+//                if (width != null && width != 0) {
+//                    currentTitleView.layout(0, 0, width, currentTitleView.height)
+//                } else {
+//                    currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
+//                }
+//                currentTitleView.draw(c!!)
             }
         }
     }
@@ -104,6 +109,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
             val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
             currentTitleView.titleTextView.text = title
+            Log.d("LastTitle ", title)
 //            textViewWidth = currentTitleView.titleTextView.width
         }
     }
