@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import com.techapp.james.stickyrecyclerview.R
 import com.techapp.james.stickyrecyclerview.dataStructure.Data
 import kotlinx.android.synthetic.main.title_horizon.view.*
@@ -18,8 +20,8 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
     private val titleList: ArrayList<String>
     private val concreteData: Data
     private val titleData = HashMap<String, Int>()
-    private var standar = 10
     private var textViewWidth: Int = 0
+    private val textWidthMap = HashMap<String, Int>()
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
@@ -34,28 +36,37 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         super.onDrawOver(c, parent, state);
         var index = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         var holder: RecyclerView.ViewHolder? = null
-        parent.getChildAt(0)?.let {
-            holder = parent.getChildViewHolder(it)
-        }
+//        parent.getChildAt(0)?.let {
+//            holder = parent.getChildViewHolder(it)
+//        }
+        holder = parent.findViewHolderForAdapterPosition(index)
         if (currentView == null) {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_horizon, parent, false)
         }
         currentTitleView = currentView!!
-        currentTitleView.titleTextView.text = concreteData.getTitle(index)
-//        Log.d("Title ", concreteData.getTitle(index))
-        currentTitleView.setBackgroundColor(Color.RED)
 
+//        Log.d("Title ", concreteData.getTitle(index))
+//        currentTitleView.setBackgroundColor(Color.parseColor("#99334455"))
+//
+//        currentTitleView.setBackgroundColor(Color.RED)
+        Log.d("title ", concreteData.getTitle(index))
+
+        (((currentTitleView as ViewGroup).getChildAt(0)) as TextView).text = concreteData.getTitle(index)
         if (holder is HorizonAdapter.TitleHolder) {
             var titleHolder = holder as HorizonAdapter.TitleHolder
             //solve problem in adapter
-            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.width)
-            Log.d("title ", currentTitleView.titleTextView.text.toString())
+
+
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             currentTitleView.measure(measureWidth, measuredHeight)
+
+            (((currentTitleView as ViewGroup).getChildAt(0)) as TextView).text = concreteData.getTitle(index)
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
-            textViewWidth = currentTitleView.width
+
+            titleData.put(titleHolder.textView.text.toString(), currentTitleView.width)
+            textWidthMap.put(titleHolder.textView.text.toString(), currentTitleView.titleTextView.width)
         } else {
 //            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
 //            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
@@ -75,20 +86,21 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
                 val rightPadding = currentTitleView.right - currentTitleView.titleTextView.right
 //                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightPadding.toString())
                 val viewWidth = titleData.get(currentTitleView.titleTextView.text.toString())!!
+                Log.d("VW: ", "Width " + currentTitleView.titleTextView.text + " " + viewWidth.toString())
                 var titleRight: Int
-                if (viewWidth != 0) {
-                    titleRight = Math.min(nextHolder!!.itemView.left, viewWidth)
-                } else {
-                    titleRight = Math.min(nextHolder!!.itemView.left, standar)
-                }
+//                if (viewWidth != 0) {
+                titleRight = Math.min(nextHolder.itemView.left, viewWidth)
+//                } else {
+//                    titleRight = Math.min(nextHolder.itemView.left, standar)
+//                }
 
 //                Log.d("Width ", standar.toString())
 
                 currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
-                textViewWidth = textView.right - textView.left
+//                textViewWidth = textView.right - textView.left
 //                val textLeftSpacing = textView.right - textView.left
                 textView.right = titleRight - rightPadding
-                textView.left = textView.right - textViewWidth
+                textView.left = textView.right - textWidthMap.get(currentTitleView.titleTextView.text.toString())!!
                 getLastTitleAndWidth(nextHolder as HorizonAdapter.TitleHolder)
                 currentTitleView.draw(c!!)
             } else {
