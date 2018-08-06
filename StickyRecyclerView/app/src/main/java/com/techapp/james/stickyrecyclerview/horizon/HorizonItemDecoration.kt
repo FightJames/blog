@@ -72,9 +72,9 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
                 val viewWidth = titleData.get(currentTitleView.titleTextView.text.toString())!!
                 var titleRight: Int
                 if (viewWidth != 0) {
-                    titleRight = Math.min(holder!!.itemView.right, viewWidth)
+                    titleRight = Math.min(nextHolder!!.itemView.left, viewWidth)
                 } else {
-                    titleRight = Math.min(holder!!.itemView.right, standar)
+                    titleRight = Math.min(nextHolder!!.itemView.left, standar)
                 }
 
 //                Log.d("Width ", standar.toString())

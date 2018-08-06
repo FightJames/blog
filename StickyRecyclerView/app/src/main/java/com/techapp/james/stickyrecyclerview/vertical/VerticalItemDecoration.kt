@@ -30,7 +30,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
     }
 
     var textHeight: Int = 0
-    var bottomPadding: Int = 0
+    var bottomPadding: Int = 5
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state);
         var index = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
@@ -40,7 +40,7 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
         }
         if (currentView == null) {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
-            var px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5f, parent.getResources().getDisplayMetrics());
+            var px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, bottomPadding.toFloat(), parent.getResources().getDisplayMetrics());
             bottomPadding = px.toInt()
         }
         currentTitleView = currentView!!
