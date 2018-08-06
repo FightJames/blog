@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import com.techapp.james.stickyrecyclerview.dataStructure.Data
@@ -39,6 +40,8 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
         }
         if (currentView == null) {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_item, parent, false)
+            var px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5f, parent.getResources().getDisplayMetrics());
+            bottomPadding = px.toInt()
         }
         currentTitleView = currentView!!
         currentTitleView.titleTextView.text = concreteData.getTitle(index)
@@ -52,7 +55,6 @@ class VerticalItemDecoration : RecyclerView.ItemDecoration {
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
             textHeight = currentView!!.titleTextView.measuredHeight
 
-            bottomPadding = currentTitleView.measuredHeight - currentTitleView.titleTextView.bottom
             currentTitleView.measure(measureWidth, measuredHeight)
             currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
             currentTitleView.draw(c!!)
