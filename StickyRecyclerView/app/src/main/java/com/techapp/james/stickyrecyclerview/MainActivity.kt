@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
 
         val concreteData: ConcreteData = ConcreteData()
-//        val title = listOf("abc","dwadawdaw","dwadawdawdawd","aaaaa","465456465")
-        val title="abcdefghijk"
+        val title = listOf("abc","dwadawdaw","dwadawdawdawd","aaaaa","465456465")
+//        val title="abcdefghijk"
         val item = "50412789458263"
 
         Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
