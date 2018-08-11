@@ -45,7 +45,7 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         if (holder is HorizonAdapter.TitleHolder) {
             var titleHolder = holder as HorizonAdapter.TitleHolder
             //solve problem in adapter
-            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.width)
+            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.measuredWidth)
 
             val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
             val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)

@@ -24,6 +24,7 @@
         </activity>
         <activity
             android:name=".view.musicView.MusicPlayActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.createPlaylistView.CreatePlayListActivity"
