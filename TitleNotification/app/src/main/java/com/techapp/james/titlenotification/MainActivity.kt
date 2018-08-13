@@ -40,11 +40,11 @@ class MainActivity : AppCompatActivity() {
             mBuilder.setAutoCancel(true)
             mBuilder.setContentInfo("Info")
             mBuilder.setTicker("狀態列")
-            mBuilder.setPriority(NotificationCompat.PRIORITY_MAX)
+//            mBuilder.setPriority(NotificationCompat.PRIORITY_MAX)
 
-            mBuilder.setDefaults(NotificationCompat.DEFAULT_SOUND)
+//            mBuilder.setDefaults(NotificationCompat.DEFAULT_SOUND)
             //設定震動方式，延遲0秒，震動1秒，延遲1秒、震動一秒
-            mBuilder.setVibrate(longArrayOf(0, 1000, 1000, 1000))
+//            mBuilder.setVibrate(longArrayOf(0, 1000, 1000, 1000))
             mBuilder.setChannelId("Channel ID")
         } else {
             mBuilder.setContentTitle("Hello")
