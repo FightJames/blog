@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.techapp.james.recycleviewcustomer">
+    package="com.techapp.james.paginglist">
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".speedRecycler.SpeedRecyclerActivity" />
-        <activity android:name=".customRecycler.RecyclerActivity" />
-        <activity android:name=".addRemoveItem.AddRemoveActivity" />
-        <activity android:name=".dragAndSwip.DragSwipActivity"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ class MyImageHolder : RecyclerView.ViewHolder {
 
     constructor(itemView: View) : super(itemView) {
         //here can get item layout's components
-        imageView = itemView.imageView
+        imageView = itemView.dragImageView
         imageView!!.setImageResource(R.drawable.abc_ic_clear_material)
         imageView!!.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {

@@ -73,7 +73,7 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
 //                println("parent  "+parent!!.width+"  "+parent!!.paddingRight)
 //                println("child bottom "+child.bottom+" params bottomMargin "+params.bottomMargin+" round "+Math.round(ViewCompat.getTranslationY(child)))
 //                println("Drawable Bound "+mDivider!!.intrinsicHeight)
-//                //drawable set in drawable file's item_line.xml
+//                //drawable list in drawable file's item_line.xml
 //                println("Bounds "+left+"  "+top+"  "+right+"  "+bottom)
                 mDivider!!.draw(c)
 //                mDivider!!.setBounds(0, child.top, mDivider!!.intrinsicHeight, bottom)
@@ -112,7 +112,7 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
             println("recycle")
             outRect!!.set(0, 0, mDivider!!.getIntrinsicWidth(), 0)
             //mDivider.getIntrinsicHeight return drawable's height
-            //octRect.set Set the rectangle's coordinates to the specified values.
+            //octRect.list Set the rectangle's coordinates to the specified values.
         }
         //super.getItemOffsets(outRect, view, parent, state)
     }
