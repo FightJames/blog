@@ -2,6 +2,7 @@ package com.techapp.james.recycleviewcustomer.dragAndSwip
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -20,7 +21,9 @@ class DragSwipActivity : AppCompatActivity() {
         var myAdapter = MyAdapter(list)
         recyclerList.adapter = myAdapter
         recyclerList.layoutManager = LinearLayoutManager(this)
-
+        //if you want to change divider color, you must define drawable in rectangle and color.
+        var decor = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        recyclerList.addItemDecoration(decor)
 
         var touchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
             override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
@@ -41,7 +44,7 @@ class DragSwipActivity : AppCompatActivity() {
             }
 
             override fun isLongPressDragEnabled(): Boolean {
-                return true
+                return false
             }
 
             override fun isItemViewSwipeEnabled(): Boolean {

@@ -3,6 +3,7 @@ package com.techapp.james.recycleviewcustomer.dragAndSwip
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +25,9 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, ItemTouchHelper
                 Collections.swap(data, i, i + 1)
             }
         } else {
-            for (i in fromPosition downTo toPosition + 1) {
-                Collections.swap(data, i, i + 1)
+            Log.d("MyAdapter", " $fromPosition $toPosition")
+            for (i in fromPosition downTo (toPosition + 1)) {
+                Collections.swap(data, i, i - 1)
             }
         }
         notifyItemMoved(fromPosition, toPosition)
