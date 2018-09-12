@@ -1,5 +1,7 @@
 package com.techapp.james.paginglist
 
+import com.techapp.james.paginglist.api.GithubService
+import com.techapp.james.paginglist.api.searchRepo
 import org.junit.Test
 
 import org.junit.Assert.*
