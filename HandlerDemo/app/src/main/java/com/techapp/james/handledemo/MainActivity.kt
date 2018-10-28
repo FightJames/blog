@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.techapp.james.handledemo.handlerThread.HandlerThreadActivity
 import com.techapp.james.handledemo.loopThread.Main2Activity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
 

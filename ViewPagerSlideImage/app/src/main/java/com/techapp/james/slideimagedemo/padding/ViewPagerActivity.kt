@@ -9,14 +9,14 @@ import android.support.v4.view.ViewPager
 import android.text.Html
 import android.widget.TextView
 import com.techapp.james.slideimagedemo.R
-import kotlinx.android.synthetic.main.activity_padding.*
+import kotlinx.android.synthetic.main.padding_activity.*
 
 class ViewPagerActivity : AppCompatActivity() {
     var data: ArrayList<String>? = null
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_padding)
+        setContentView(R.layout.padding_activity)
         data = ArrayList<String>()
 
         data!!.add("1")

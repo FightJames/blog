@@ -3,14 +3,14 @@ package com.techapp.james.slideimagedemo.scrollSpeed
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.techapp.james.slideimagedemo.R
-import kotlinx.android.synthetic.main.activity_view_pager_scroll.*
+import kotlinx.android.synthetic.main.scroll_speed_activity.*
 import java.lang.reflect.Field
 
 class ViewPagerScrollActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_pager_scroll)
+        setContentView(R.layout.scroll_speed_activity)
         setScrollSpeed()
         var list = ArrayList<String>()
         for (i in 0..100) {

@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".padding.ViewPagerActivity" />
-        <activity android:name=".scrollSpeed.ViewPagerScrollActivity"></activity>
+        <activity android:name=".scrollSpeed.ViewPagerScrollActivity" />
+        <activity android:name=".fragmentPager.FragmentPagerActivity" />
+        <activity android:name=".fragmentStatePager.FragmentStatePagerActivity"></activity>
     </application>
 
 </manifest>

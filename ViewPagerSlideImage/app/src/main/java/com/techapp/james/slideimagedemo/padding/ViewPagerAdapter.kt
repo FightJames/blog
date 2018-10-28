@@ -28,24 +28,28 @@ class ViewPagerAdapter : PagerAdapter {
         } else {
             view.setBackgroundColor(context.getColor(R.color.colorAccent));
         }
-        Log.d("instantiate"," pass")
+        Log.d("instantiate", " pass")
         //view.imageView.setImageBitmap(data[position])
         container!!.addView(view)
         return view
     }
 
+    override fun getPageWidth(position: Int): Float {
+        return super.getPageWidth(position)
+    }
+
     override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
-        Log.d("isViewFromObject"," pass")
+        Log.d("isViewFromObject", "view ${view!!.hashCode()} object ${`object`!!.hashCode()} ")
         return view == `object`  // create view is same data object?
     }
 
     override fun getCount(): Int {
-        Log.d("getCount"," pass")
+        Log.d("getCount", " pass")
         return data.size
     }
 
     override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
-        Log.d("destroyItem"," pass")
+        Log.d("destroyItem", " pass")
         var view: View = `object` as View
         container!!.removeView(view)
     }
