@@ -10,4 +10,9 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_slide_out_bottom)
+    }
 }

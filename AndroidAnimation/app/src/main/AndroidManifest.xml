@@ -21,7 +21,11 @@
         <activity android:name=".frameAnimation.FrameActivity" />
         <activity android:name=".tweenAnimation.TweenActivity" />
         <activity android:name=".activityTransitions.First_Activity" />
-        <activity android:name=".activityTransitions.SecondActivity"></activity>
+        <activity android:name=".activityTransitions.SecondActivity" />
+        <activity android:name=".valueAnimation.ValueActivity" />
+        <activity android:name=".objectAnimation.ObjectActivity" />
+        <activity android:name=".animationSet.AnimationSetActivity" />
+        <activity android:name=".Interpolator.InterpolatorActivity"></activity>
     </application>
 
 </manifest>
