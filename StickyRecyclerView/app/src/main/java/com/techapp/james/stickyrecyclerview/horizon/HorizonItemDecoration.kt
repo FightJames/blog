@@ -6,29 +6,24 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.techapp.james.stickyrecyclerview.R
 import com.techapp.james.stickyrecyclerview.dataStructure.Data
+import kotlinx.android.synthetic.main.item.view.*
 import kotlinx.android.synthetic.main.title_horizon.view.*
 
 class HorizonItemDecoration : RecyclerView.ItemDecoration {
-
-    private lateinit var currentTitleView: View
-    private var currentView: View? = null
-    private val titleList: ArrayList<String>
-    private val concreteData: Data
-    private val titleData = HashMap<String, Int>()
-    private var standar = 10
-    private var textViewWidth: Int = 0
+    var concreteData: Data
+    var currentView: View? = null
+    var textViewWidth: Int = 0
 
     constructor(concreteData: Data) {
         this.concreteData = concreteData
-        titleList = concreteData.getTitles()
     }
 
-    fun putTitleData(title: String, width: Int) {
-        titleData.put(title, width)
-    }
-
+    var measureWidth: Int = 0
+    var measuredHeight: Int = 0
+    var rightPadding: Int = 0
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state);
         var index = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
@@ -38,73 +33,61 @@ class HorizonItemDecoration : RecyclerView.ItemDecoration {
         }
         if (currentView == null) {
             currentView = LayoutInflater.from(parent.context).inflate(R.layout.title_horizon, parent, false)
+            currentView!!.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
-        currentTitleView = currentView!!
-        currentTitleView.titleTextView.text = concreteData.getTitle(index)
 
         if (holder is HorizonAdapter.TitleHolder) {
-            var titleHolder = holder as HorizonAdapter.TitleHolder
-            //solve problem in adapter
-            titleData.put(titleHolder.textView.text.toString(), titleHolder.itemView.measuredWidth)
+            currentView!!.titleTextView.text = concreteData.getTitle(index)
 
-            val measureWidth = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.width, View.MeasureSpec.EXACTLY)
-            val measuredHeight = View.MeasureSpec.makeMeasureSpec(titleHolder.itemView.height, View.MeasureSpec.EXACTLY)
-            currentTitleView.measure(measureWidth, measuredHeight)
-            currentTitleView.layout(0, 0, titleHolder.itemView.width, titleHolder.itemView.height)
-            currentTitleView.draw(c!!)
-            textViewWidth = currentTitleView.titleTextView.width
+            doMeasure(parent)
+            Log.d("Parent Par", " Width ${parent.measuredWidth} Height ${parent.measuredHeight}")
+            Log.d("Parent Par", " Current Width ${currentView!!.measuredWidth}  Current Height ${currentView!!.measuredHeight}")
+            currentView!!.layout(0, 0, currentView!!.measuredWidth, currentView!!.measuredHeight)
+            currentView!!.draw(c!!)
+
+            rightPadding = currentView!!.right - currentView!!.titleTextView.right
+            textViewWidth = currentView!!.titleTextView.width
         } else {
-            val measureWidth = View.MeasureSpec.makeMeasureSpec(currentTitleView.width, View.MeasureSpec.EXACTLY)
-            val measuredHeight = View.MeasureSpec.makeMeasureSpec(currentTitleView.height, View.MeasureSpec.EXACTLY)
-            currentTitleView.measure(measureWidth, measuredHeight)
+            currentView!!.measure(measureWidth, measuredHeight)
 //            Log.d("WH  ", index.toString())
             var nextHolder: RecyclerView.ViewHolder? = null
-            for (i in 1..10) {
-                nextHolder = parent.findViewHolderForAdapterPosition(index + i)
-                if (nextHolder is HorizonAdapter.TitleHolder) {
-                    break
-                }
-            }
+            nextHolder = parent.findViewHolderForAdapterPosition(index + 1)
+
+
             if (nextHolder is HorizonAdapter.TitleHolder) {
-                var textView = currentTitleView.titleTextView
-                val rightPadding = currentTitleView.right - currentTitleView.titleTextView.right
 //                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightPadding.toString())
-                val viewWidth = titleData.get(currentTitleView.titleTextView.text.toString())!!
-                var titleRight: Int
-                if (viewWidth != 0) {
-                    titleRight = Math.min(nextHolder!!.itemView.left, viewWidth)
-                } else {
-                    titleRight = Math.min(nextHolder!!.itemView.left, standar)
+                if (currentView!!.titleTextView.text.toString()
+                        == nextHolder.textView.text.toString()) {
+                    currentView!!.titleTextView.text = concreteData.getTitle(index)
+                    doMeasure(parent)
                 }
 
-//                Log.d("Width ", standar.toString())
+                var textView = currentView!!.titleTextView
 
-                currentTitleView.layout(0, 0, titleRight, holder!!.itemView.height)
-                textViewWidth = textView.right - textView.left
+                var titleRight: Int
+                titleRight = Math.min(nextHolder!!.itemView.left, currentView!!.measuredWidth)
+
+
+                currentView!!.layout(0, 0, titleRight, currentView!!.measuredHeight)
+
 //                val textLeftSpacing = textView.right - textView.left
                 textView.right = titleRight - rightPadding
                 textView.left = textView.right - textViewWidth
-                getLastTitleAndWidth(nextHolder)
-                currentTitleView.draw(c!!)
+                currentView!!.draw(c!!)
             } else {
-                var width = titleData.get(currentTitleView.titleTextView.text.toString())
-                var titleString = currentTitleView.titleTextView.text.toString()
-//                Log.d("CurrentTitleView ", "$titleString $width")
-                if (width != null && width != 0) {
-                    currentTitleView.layout(0, 0, width, currentTitleView.height)
-                } else {
-                    currentTitleView.layout(0, 0, currentTitleView.width, currentTitleView.height)
-                }
-                currentTitleView.draw(c!!)
+                currentView!!.titleTextView.text = concreteData.getTitle(index)
+                doMeasure(parent)
+                currentView!!.layout(0, 0, currentView!!.measuredWidth, currentView!!.measuredHeight)
+                currentView!!.draw(c!!)
             }
         }
     }
 
-    private fun getLastTitleAndWidth(nextHolder: HorizonAdapter.TitleHolder) {
-        if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
-            val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
-            currentTitleView.titleTextView.text = title
-//            textViewWidth = currentTitleView.titleTextView.width
-        }
+
+    private fun doMeasure(parent: RecyclerView) {
+        measureWidth = View.MeasureSpec.makeMeasureSpec(parent.measuredWidth, View.MeasureSpec.AT_MOST)
+        measuredHeight = View.MeasureSpec.makeMeasureSpec(parent.measuredHeight, View.MeasureSpec.EXACTLY)
+        currentView!!.measure(measureWidth, measuredHeight)
+        textViewWidth = currentView!!.titleTextView.measuredWidth
     }
 }

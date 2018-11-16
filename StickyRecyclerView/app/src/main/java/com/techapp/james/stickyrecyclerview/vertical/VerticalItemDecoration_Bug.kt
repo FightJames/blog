@@ -12,7 +12,7 @@ import com.techapp.james.stickyrecyclerview.R
 import kotlinx.android.synthetic.main.title_item.view.*
 
 
-class VerticalItemDecoration : RecyclerView.ItemDecoration {
+class VerticalItemDecoration_Bug : RecyclerView.ItemDecoration {
 
     private lateinit var currentTitleView: View
     private var currentView: View? = null

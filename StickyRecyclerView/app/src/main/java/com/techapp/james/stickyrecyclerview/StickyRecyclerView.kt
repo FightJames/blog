@@ -10,7 +10,7 @@ import com.techapp.james.stickyrecyclerview.dataStructure.Data
 import com.techapp.james.stickyrecyclerview.horizon.HorizonAdapter
 import com.techapp.james.stickyrecyclerview.horizon.HorizonItemDecoration
 import com.techapp.james.stickyrecyclerview.vertical.VerticalAdapter
-import com.techapp.james.stickyrecyclerview.vertical.VerticalItemDecoration
+import com.techapp.james.stickyrecyclerview.vertical.VerticalItemDecoration_Bug
 
 
 class StickyRecyclerView : RecyclerView {
@@ -48,7 +48,7 @@ class StickyRecyclerView : RecyclerView {
         if (isVertical) {
             layoutManager = LinearLayoutManager(this.context)
             var verticalAdapter = VerticalAdapter(data)
-            var verticalItemDecoration = VerticalItemDecoration(data)
+            var verticalItemDecoration = VerticalItemDecoration_Bug(data)
             verticalAdapter.sendTitleDecoration = verticalItemDecoration::putTitleData
             adapter = verticalAdapter
             addItemDecoration(verticalItemDecoration)
@@ -58,7 +58,7 @@ class StickyRecyclerView : RecyclerView {
             addItemDecoration(horizonItemDecoration)
             var horizonAdapter = HorizonAdapter(data)
             adapter = horizonAdapter
-            horizonAdapter.sendTitleDecoration = horizonItemDecoration::putTitleData
+//            horizonAdapter.sendTitleDecoration = horizonItemDecoration::putTitleData
 
         }
         if (isVerticalDivider()) {

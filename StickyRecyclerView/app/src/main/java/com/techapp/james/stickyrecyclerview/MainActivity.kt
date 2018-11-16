@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 //        var myAdapter = VerticalAdapter(concreteData)
 //        recyclerList.adapter = myAdapter
 //        recyclerList.layoutManager = LinearLayoutManager(this)
-//        recyclerList.addItemDecoration(VerticalItemDecoration(concreteData))
+//        recyclerList.addItemDecoration(VerticalItemDecoration_Bug(concreteData))
 
         title.forEach { t ->
             item.forEach { i ->
