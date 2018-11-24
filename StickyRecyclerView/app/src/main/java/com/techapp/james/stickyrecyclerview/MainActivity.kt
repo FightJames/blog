@@ -1,5 +1,6 @@
 package com.techapp.james.stickyrecyclerview
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,18 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val concreteData: ConcreteData = ConcreteData()
         val title = "abcdefghijklmnopqrst"
         val item = "50412789458263"
 
         Log.d("Adapter", title.toMutableList().shuffled().joinToString(","));
-
-//        title.forEach { t -> item.forEach { i -> concreteData.insertOrUpdate(t.toString(), i.toString()) } }
-//        var myAdapter = VerticalAdapter(concreteData)
-//        recyclerList.adapter = myAdapter
-//        recyclerList.layoutManager = LinearLayoutManager(this)
-//        recyclerList.addItemDecoration(VerticalItemDecoration_Bug(concreteData))
 
         title.forEach { t ->
             item.forEach { i ->
@@ -31,7 +24,5 @@ class MainActivity : AppCompatActivity() {
                 recyclerListHorizon.insertOrUpdate(t.toString(), i.toString())
             }
         }
-
-//        recyclerList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 }

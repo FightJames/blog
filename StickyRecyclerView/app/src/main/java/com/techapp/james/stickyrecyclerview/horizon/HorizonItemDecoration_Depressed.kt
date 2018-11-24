@@ -68,7 +68,7 @@ class HorizonItemDecoration_Depressed : RecyclerView.ItemDecoration {
             if (nextHolder is HorizonAdapter.TitleHolder) {
                 var textView = currentTitleView.titleTextView
                 val rightPadding = currentTitleView.right - currentTitleView.titleTextView.right
-//                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + rightPadding.toString())
+//                Log.d("RightTextSpacing ", currentTitleView.right.toString() + "  " + currentTitleView.titleTextView.right + " " + bottomPadding.toString())
                 val viewWidth = titleData.get(currentTitleView.titleTextView.text.toString())!!
                 var titleRight: Int
                 if (viewWidth != 0) {
@@ -104,7 +104,7 @@ class HorizonItemDecoration_Depressed : RecyclerView.ItemDecoration {
         if (currentTitleView.titleTextView.text.equals(nextHolder.textView.text)) {
             val title = titleList.get(titleList.indexOf(currentTitleView.titleTextView.text!!) - 1)
             currentTitleView.titleTextView.text = title
-//            textViewWidth = currentTitleView.titleTextView.width
+//            textViewHeight = currentTitleView.titleTextView.width
         }
     }
 }
