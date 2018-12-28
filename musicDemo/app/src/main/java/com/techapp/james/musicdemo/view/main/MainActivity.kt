@@ -14,9 +14,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.pm.PackageManager
 import android.support.annotation.RequiresApi
 import android.util.Log
+import com.techapp.james.musicdemo.model.notificationAndMusicService.LaunchFlag
 import com.techapp.james.musicdemo.model.notificationAndMusicService.MusicService
 import com.techapp.james.musicdemo.model.playManager.ExoPlayManagerSubject
 import com.techapp.james.musicdemo.model.playManager.ExoPlayerManager
+import com.techapp.james.musicdemo.view.musicView.MusicPlayActivity
 import java.util.ArrayList
 
 
@@ -27,13 +29,14 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
     private val allPermission = ArrayList<Int>()
     private val permission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)  //權限項目在此新增
     private val REQUEST_CODE_ASK_PERMISSIONS = 0
-//    var notificationPresenter: NotificationPresenter? = null
+    //    var notificationPresenter: NotificationPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intentMusicActivity(intent)
+
         ExoPlayerManager.registSubject(this)
         //--
         startService(Intent(this, MusicService::class.java))
-
         setContentView(R.layout.activity_main)
         mainHandler = Handler(Looper.getMainLooper())
         init()//create presenter here
@@ -54,6 +57,11 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
 
         fragmentTransaction.replace(R.id.frameLayout, firstFragment)
         fragmentTransaction.commit()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        intentMusicActivity(intent)
     }
 
     override fun updateExoPlayerState() {
@@ -164,6 +172,15 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
             mainPresenter!!.setPlayListOriginData(applicationContext)
         } else {
             this.finish()
+        }
+    }
+
+
+    fun intentMusicActivity(i: Intent?) {
+        i?.let {
+            if (it.getBooleanExtra(LaunchFlag.isDisplayMusicView, false)) {
+                startActivity(Intent(this, MusicPlayActivity::class.java))
+            }
         }
     }
 

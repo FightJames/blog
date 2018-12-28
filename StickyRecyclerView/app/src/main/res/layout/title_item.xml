@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/titleRoot"
-    android:background="@color/colorTitle">
+    android:background="@android:color/holo_blue_dark">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -14,7 +14,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:text="TextView"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

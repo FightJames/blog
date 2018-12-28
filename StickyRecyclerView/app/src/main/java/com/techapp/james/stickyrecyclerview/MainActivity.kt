@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         title.forEach { t ->
             item.forEach { i ->
                 recyclerListVertical.insertOrUpdate(t.toString(), i.toString())
-                recyclerListHorizon.insertOrUpdate(t.toString(), i.toString())
+//                recyclerListHorizon.insertOrUpdate(t.toString(), i.toString())
             }
         }
     }

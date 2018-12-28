@@ -10,27 +10,11 @@
         android:id="@+id/recyclerListVertical"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         app:enableDivider="true"
         app:isVertical="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerListHorizon" />
-
-    <com.techapp.james.stickyrecyclerview.StickyRecyclerView
-        android:id="@+id/recyclerListHorizon"
-        android:layout_width="0dp"
-        android:layout_height="216dp"
-        app:enableDivider="true"
-        app:isVertical="false"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerListVertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </com.techapp.james.stickyrecyclerview.StickyRecyclerView>
-
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

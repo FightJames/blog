@@ -12,6 +12,7 @@ import com.techapp.james.musicdemo.R
 import com.techapp.james.musicdemo.model.musicModel.ManageCurrentPlaySongList
 import com.techapp.james.musicdemo.model.playManager.ExoPlayManagerSubject
 import com.techapp.james.musicdemo.model.playManager.ExoPlayerManager
+import com.techapp.james.musicdemo.view.main.MainActivity
 import com.techapp.james.musicdemo.view.musicView.MusicPlayActivity
 
 class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayManagerSubject {
@@ -30,7 +31,7 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
         player = ExoPlayerManager
         notificationManager = this.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationBuilder = NotificationCompat.Builder(this.applicationContext)
-         remoteViews = RemoteViews(this.packageName, R.layout.presenter_notification_layout)
+        remoteViews = RemoteViews(this.packageName, R.layout.presenter_notification_layout)
         //   remoteViews.setTextViewText(R.id.test,ManageCurrentPlaySongList.getCurrentSongName())
         remoteViews!!.setTextViewText(R.id.songNameTextView, ManageCurrentPlaySongList.getCurrentSongName())
 //button click-------------
@@ -52,7 +53,8 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
         remoteViews!!.setImageViewResource(R.id.nextSongImageView, R.drawable.ic_next_black_24dp)
 //--
         intent = Intent()
-        intent.setClass(this, MusicPlayActivity::class.java)
+        intent.setClass(this, MainActivity::class.java)
+        intent.putExtra(LaunchFlag.isDisplayMusicView, true)
         pendingIntent = PendingIntent.getActivity(this.applicationContext, notification_id, intent, 0)
         notificationBuilder!!.setSmallIcon(R.drawable.music_notification_icon)
                 .setAutoCancel(false)
@@ -60,7 +62,7 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
                 .setCustomContentView(remoteViews)
                 .setContentIntent(pendingIntent)
         //.setCustomBigContentView()
-         customerNotification = notificationBuilder!!.build()
+        customerNotification = notificationBuilder!!.build()
         ExoPlayerManager.registSubject(this)
         ManageCurrentPlaySongList.addRegisterChangeSongName(this)
         startForeground(1, customerNotification)
@@ -74,7 +76,7 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
 
     override fun changeData(songName: String) {
         remoteViews!!.setTextViewText(R.id.songNameTextView, songName)
-        startForeground(1,customerNotification)
+        startForeground(1, customerNotification)
     }
 
     var customerNotification: Notification? = null
@@ -84,6 +86,6 @@ class MusicService : Service(), ManageCurrentPlaySongList.ChangeData, ExoPlayMan
         } else {
             remoteViews!!.setImageViewResource(R.id.playStopSongImageView, R.drawable.ic_pause_black_24dp)
         }
-        startForeground(1,customerNotification)
+        startForeground(1, customerNotification)
     }
 }
