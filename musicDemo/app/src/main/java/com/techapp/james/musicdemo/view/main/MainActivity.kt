@@ -187,7 +187,7 @@ class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
     @RequiresApi(api = Build.VERSION_CODES.M)
     fun applyRight(): Boolean {
         for (i in permission.indices) {
-            val eachPermission = this.checkSelfPermission(permission[i]) //命名權限
+            val eachPermission = this.checkSelfPermission(permission[i]) // Do you have right
             allPermission.add(eachPermission)
         }
         for (i in allPermission.indices) {

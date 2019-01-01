@@ -1,6 +1,6 @@
 This is StickyRecyclerView.
 
-![image](https://github.com/FightJames/blog/blob/master/StickyRecyclerView/gif_20180805_140632.gif)
+![image](https://github.com/FightJames/blog/blob/master/StickyRecyclerView/20181209_073837.gif)
 
 #  How to use
 ```
