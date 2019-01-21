@@ -36,8 +36,8 @@ class MainPresenter {
 
     constructor(activity: MainActivity) {
         this.activity = activity
-        bottomImageList.add(BottomImage(activity.homeImageView, R.drawable.ic_home_grey_white, R.drawable.ic_home_white))
-        bottomImageList.add(BottomImage(activity.myMusicImageView, R.drawable.ic_folder_grey_white, R.drawable.ic_folder_white))
+        bottomImageList.add(BottomImage(activity.homeImageView, R.drawable.ic_home_white, R.drawable.ic_home_grey_white))
+        bottomImageList.add(BottomImage(activity.myMusicImageView, R.drawable.ic_folder_white, R.drawable.ic_folder_grey_white))
         fragmentList.add(PlayListFragment.getInstance() as ReStart)
         fragmentList.add(FirstFragment.getInstance() as ReStart)
     }
@@ -102,7 +102,6 @@ class MainPresenter {
         fragmentTransaction.replace(R.id.frameLayout, firstFragment)
         fragmentTransaction.addToBackStack("first");
         fragmentTransaction.commit()
-        onBottomClick(image)
     }
 
     fun onRandomEvent() {
@@ -127,13 +126,12 @@ class MainPresenter {
         fragmentTransaction.replace(R.id.frameLayout, PlayListFragment.getInstance())
         fragmentTransaction.addToBackStack("first");
         fragmentTransaction.commit()//commitAllowingStateLoss 不會使程式崩潰 但是可能會使UI資訊錯誤
-        onBottomClick(image)
     }
 
-    fun onBottomClick(image: ImageView) {
-        for (i in 0..(bottomImageList.size - 1)) {
-            if (bottomImageList[i].equal(image)) {
-                bottomImageList[i].setOnClickBackground()
+    fun onBottomClick(t: Int) {
+        for (i in bottomImageList.indices) {
+            if (i == t) {
+                bottomImageList[t].setOnClickBackground()
             } else {
                 bottomImageList[i].setNotClickBackground()
             }

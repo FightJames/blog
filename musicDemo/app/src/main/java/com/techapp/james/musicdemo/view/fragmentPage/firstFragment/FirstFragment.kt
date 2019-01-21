@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.techapp.james.musicdemo.R
 import com.techapp.james.musicdemo.model.musicModel.phoneMusicData.OriginMusicData
+import com.techapp.james.musicdemo.view.fragmentPage.OnFragmentInteration
 import com.techapp.james.musicdemo.view.fragmentPage.fragmentRestart.ReStart
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -42,6 +43,10 @@ class FirstFragment : Fragment(), ReStart {
             songListRecycler.adapter = firstFragmentListAdapter
         } catch (e: Exception) {
 
+        }
+
+        this.activity.let {
+            (it as OnFragmentInteration).onFragmentInteration(it.getString(R.string.fragmentSecond))
         }
     }
 

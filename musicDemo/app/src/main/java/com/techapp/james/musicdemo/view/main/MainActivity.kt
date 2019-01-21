@@ -18,11 +18,23 @@ import com.techapp.james.musicdemo.model.notificationAndMusicService.LaunchFlag
 import com.techapp.james.musicdemo.model.notificationAndMusicService.MusicService
 import com.techapp.james.musicdemo.model.playManager.ExoPlayManagerSubject
 import com.techapp.james.musicdemo.model.playManager.ExoPlayerManager
+import com.techapp.james.musicdemo.view.fragmentPage.OnFragmentInteration
 import com.techapp.james.musicdemo.view.musicView.MusicPlayActivity
 import java.util.ArrayList
 
 
-class MainActivity : AppCompatActivity(), ExoPlayManagerSubject {
+class MainActivity : AppCompatActivity(), ExoPlayManagerSubject, OnFragmentInteration {
+    override fun onFragmentInteration(s: String) {
+        when (s) {
+            this.getString(R.string.fragmentOne) -> {
+                mainPresenter!!.onBottomClick(0)
+            }
+            this.getString(R.string.fragmentSecond) -> {
+                mainPresenter!!.onBottomClick(1)
+            }
+        }
+    }
+
     var mainPresenter: MainPresenter? = null
     var uiHandler: Handler? = null
     var mainHandler: Handler? = null

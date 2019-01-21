@@ -15,6 +15,7 @@ import com.techapp.james.musicdemo.R
 import com.techapp.james.musicdemo.model.musicModel.PlayList
 import com.techapp.james.musicdemo.model.musicModel.PlayLists
 import com.techapp.james.musicdemo.view.createPlaylistView.CreatePlayListActivity
+import com.techapp.james.musicdemo.view.fragmentPage.OnFragmentInteration
 import com.techapp.james.musicdemo.view.fragmentPage.albumFragment.AlbumFragment
 import com.techapp.james.musicdemo.view.fragmentPage.fragmentRestart.ReStart
 import com.techapp.james.musicdemo.view.main.MainActivity
@@ -22,11 +23,6 @@ import kotlinx.android.synthetic.main.playlist_fragment_fragment_play_list.*
 
 
 class PlayListFragment : Fragment(), ReStart {
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
-
     override fun onRestart() {
     }
 
@@ -57,7 +53,9 @@ class PlayListFragment : Fragment(), ReStart {
             intent.setClass(this.context, CreatePlayListActivity::class.java)
             startActivity(intent)
         }
-
+        this.activity.let {
+            (it as OnFragmentInteration).onFragmentInteration(it.getString(R.string.fragmentOne))
+        }
     }
 
     override fun onAttach(context: Context) {

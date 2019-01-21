@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">musicApplication</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="SongName">SongName</string>
     <string name="SongListName">SongListName</string>
@@ -13,4 +12,7 @@
     <string name="NewPlaylist">NEW PLAYLIST</string>
     <string name="Remove">Remove</string>
     <string name="PlayForm">Play Form</string>
+
+    <string name="fragmentOne">first</string>
+    <string name="fragmentSecond">second</string>
 </resources>
