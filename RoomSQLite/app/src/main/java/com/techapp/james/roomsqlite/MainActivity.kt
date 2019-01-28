@@ -13,9 +13,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        val userDao = UserDatabase.getDatabase(applicationContext)!!.userDao()
+//        val userDB = UserDatabase.getDatabase(applicationContext)!!
 
-        var userDB = Room.databaseBuilder<UserDatabase>(applicationContext, UserDatabase::class.java,
+        var userDB = Room.databaseBuilder<UserDatabase>(applicationContext,
+                UserDatabase::class.java,
                 DBNAME)
                 .allowMainThreadQueries()
                 .build()
