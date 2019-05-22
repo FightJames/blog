@@ -50,8 +50,7 @@
                 android:background="@color/colorPrimary"
                 android:text="Bar"
                 android:textSize="25dp"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:tabMode="fixed" />
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
         </android.support.design.widget.AppBarLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -13,7 +13,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:textSize="25dp"
-        android:background="@color/colorPrimary"
         android:textColor="@color/colorAccent"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
