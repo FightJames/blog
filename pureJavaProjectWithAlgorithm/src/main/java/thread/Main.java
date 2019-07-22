@@ -1,9 +1,14 @@
 package thread;
 
+import java.util.HashSet;
+
 public class Main {
     static boolean flag = false;
 
     public static void main(String[] argu) throws InterruptedException {
+        String k = "skldfj";
+        System.out.println(k.indexOf("skld"));
+        System.out.println(k.substring(0,2));
         Thread target = new Thread(new Runnable() {
             @Override
             public void run() {
