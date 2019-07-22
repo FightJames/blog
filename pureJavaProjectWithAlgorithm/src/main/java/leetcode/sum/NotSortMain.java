@@ -2,7 +2,7 @@ package leetcode.sum;
 
 import java.util.HashMap;
 // https://leetcode.com/problems/two-sum/
-public class Main {
+public class NotSortMain {
     public static void main(String[] argu) {
         int[] A = new int[]{2, 5, 4, 8, 9};
         int[] ans = getIndex(A, 7);
